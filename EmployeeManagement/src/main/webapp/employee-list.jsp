@@ -14,6 +14,9 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Email</th>
+        <th>Department ID</th>
+        <th>Salary</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -22,8 +25,11 @@
         <tr>
             <td>${employee.id}</td>
             <td>${employee.name}</td>
+            <td>${employee.email}</td>
+            <td>${employee.department.departmentId}</td>
+            <td>${employee.salary}</td>
             <td>
-                <a href="editEmployee?id=${employee.id}">Edit</a>
+                <a href="updateEmployee?id=${employee.id}">Edit</a>
                 <a href="deleteEmployee?id=${employee.id}">Delete</a>
             </td>
         </tr>

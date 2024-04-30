@@ -17,6 +17,7 @@
 
         <!-- Echo all executed SQL to stdout -->
         <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
         <property name="hibernate.hbm2ddl.auto">update</property>
@@ -27,6 +28,8 @@
         <!-- Mapping files -->
         <!-- Add mappings for your entity classes here -->
         <mapping class="org.example.demo4.entity.Employee"/>
+        <mapping class="org.example.demo4.entity.Department"/>
+        <mapping class="org.example.demo4.entity.Project"/>
         <!-- Add mappings for any other entity classes here -->
     </session-factory>
 </hibernate-configuration>

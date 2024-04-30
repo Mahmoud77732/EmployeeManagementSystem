@@ -9,7 +9,7 @@ public interface EmployeeRepo {
     Employee findById(Long id);
     void save(Employee emp);
     void update(Employee emp);
-    void remove(Employee emp);
+    void remove(Long id);
     List<Employee> findAll();
     List<Employee> findAll2();
 

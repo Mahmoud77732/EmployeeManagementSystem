@@ -21,10 +21,15 @@ public class EmployeeListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Employee> employees =  employeeRepo.findAll();
-        request.setAttribute("employees", employees);
-        System.out.println("==========================");
-        System.out.println("======>" + employees.get(0).getName());
-        request.getRequestDispatcher("/employee-list.jsp").forward(request, response);
+        if(!employees.isEmpty()){
+            request.setAttribute("employees", employees);
+            System.out.println("======>" + employees.get(0).getName());
+            request.getRequestDispatcher("/employee-list.jsp").forward(request, response);
+        }
+        else{
+            request.setAttribute("employees", null);
+            request.getRequestDispatcher("/employee-list.jsp").forward(request, response);
+        }
     }
 
 //    @Override

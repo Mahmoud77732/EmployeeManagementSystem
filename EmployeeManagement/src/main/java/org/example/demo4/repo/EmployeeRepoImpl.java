@@ -56,7 +56,7 @@ public class EmployeeRepoImpl  implements EmployeeRepo {
 
     @Override
     public Employee findById(Long id) {
-        try (Session session = st_getCurrentSession()) {
+        try (Session session = st_openSession()) {
             return session.get(Employee.class, id);
         }
     }
@@ -64,15 +64,34 @@ public class EmployeeRepoImpl  implements EmployeeRepo {
     @Override
     public void update(Employee emp) {
         try(Session session = st_getCurrentSession()){
+            st_beginTransaction();
+            System.out.println("from update(): " + emp.getId() + " " + emp.getName() + " " + emp.getSalary());
             session.update(emp);
+            st_commitTransaction();
+        }catch (Exception e) {
+            if (st_isActiveTransaction()) {
+                st_rollbackTransaction();
+            }
+            System.err.println(e.getMessage());
         }
     }
 
 
     @Override
-    public void remove(Employee emp) {
+    public void remove(Long id) {
         try(Session session = st_getCurrentSession()){
-            session.update(emp);
+            st_beginTransaction();
+            Employee employee = session.get(Employee.class, id);
+            if (employee != null) {
+                System.out.println("===> from remove(): " + employee.getId() + " " + employee.getName() + " " + employee.getSalary());
+                session.delete(employee);
+            }
+            st_commitTransaction();
+        }catch (Exception e) {
+            if (st_isActiveTransaction()) {
+                st_rollbackTransaction();
+            }
+            System.err.println(e.getMessage());
         }
     }
 }

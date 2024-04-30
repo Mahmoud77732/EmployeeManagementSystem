@@ -12,12 +12,12 @@ import java.util.List;
 
 public class DeleteEmployeeServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long employeeId = Long.parseLong(request.getParameter("id"));
         EmployeeRepo employeeRepo = new EmployeeRepoImpl();
-        Employee employee = employeeRepo.findById(employeeId);
-        employeeRepo.remove(employee);
+        employeeRepo.remove(employeeId);
 
-        response.sendRedirect(request.getContextPath() + "/employee-list"); // Redirect to employee list page
+        response.sendRedirect(request.getContextPath() + "/employees"); // Redirect to employees list page
     }
 }
