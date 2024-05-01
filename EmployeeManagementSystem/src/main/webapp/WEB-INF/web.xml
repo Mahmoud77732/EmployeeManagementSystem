@@ -63,6 +63,19 @@
         <servlet-class>com.oneteam.empsystem.servlets.common.AssignProjectsServlet</servlet-class>
     </servlet>
 
+    <!-- Define Auth Servlets -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.auth.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.auth.LogoutServlet</servlet-class>
+    </servlet>
+    <filter>
+        <filter-name>AuthorizationFilter</filter-name>
+        <filter-class>com.oneteam.empsystem.servlets.auth.AuthorizationFilter</filter-class>
+    </filter>
 
     <!-- Map Employee Servlets to URLs -->
     <servlet-mapping>
@@ -122,6 +135,21 @@
         <servlet-name>AssignProjectsServlet</servlet-name>
         <url-pattern>/assignProjects</url-pattern>
     </servlet-mapping>
+
+    <!-- Map Auth Servlet to URLS -->
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/hr/*</url-pattern>
+        <url-pattern>/employee/*</url-pattern>
+    </filter-mapping>
 
 
 

@@ -21,7 +21,6 @@ public class AddDepartmentServlet extends HttpServlet {
         newDepartment.setDescription(description);
         List<Employee> employees = new ArrayList<>();
         newDepartment.setEmployees(employees);
-        System.out.println("======> Employees:" + newDepartment.toString());
         DepartmentRepoImpl departmentRepo = new DepartmentRepoImpl();
         departmentRepo.save(newDepartment);
 

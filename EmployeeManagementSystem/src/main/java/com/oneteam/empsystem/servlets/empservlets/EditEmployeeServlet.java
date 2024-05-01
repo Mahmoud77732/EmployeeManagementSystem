@@ -26,25 +26,28 @@ public class EditEmployeeServlet extends HttpServlet {
         Long employeeId = Long.parseLong(request.getParameter("id"));
         String name = request.getParameter("name");
         String email = request.getParameter("email");
-        Long departmentId = Long.parseLong(request.getParameter("departmentId"));
         BigDecimal salary = new BigDecimal(request.getParameter("salary"));
 
         EmployeeRepo employeeRepo = new EmployeeRepoImpl();
         Employee employee = employeeRepo.findById(employeeId);
         if (employee != null) {
-            System.out.println("=1===> " + employee.getId());
             employee.setId(employeeId);
             employee.setName(name);
             employee.setEmail(email);
-            Department department = new Department();
-            department.setDepartmentId(departmentId);
-            employee.setDepartment(department);
+            if(!request.getParameter("departmentId").trim().isEmpty()){
+                Long departmentId = Long.parseLong(request.getParameter("departmentId"));
+                Department department = new Department();
+                department.setDepartmentId(departmentId);
+                employee.setDepartment(department);
+            }
+            else{
+                employee.setDepartment(null);
+            }
             employee.setSalary(salary);
 
             employeeRepo.update(employee);
         }
 
-        System.out.println("=2===> " + employee.getId());
 
         response.sendRedirect(request.getContextPath() + "/employees"); // Redirect to employee list page
     }

@@ -21,7 +21,6 @@ public class AddProjectServlet extends HttpServlet {
         newProject.setDescription(description);
         Set<Employee> employees = new HashSet<>();
         newProject.setEmployees(employees);
-        // System.out.println("======> Employees:" + newDepartment.toString());
         ProjectRepoImpl projectRepo = new ProjectRepoImpl();
         projectRepo.save(newProject);
 

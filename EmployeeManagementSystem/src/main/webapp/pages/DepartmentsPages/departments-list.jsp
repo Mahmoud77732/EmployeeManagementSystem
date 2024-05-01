@@ -50,6 +50,9 @@
         Description: <input type="text" name="description" /><br>
         <input type="submit" value="Add Department" />
     </form>
+
+    <br><br>
+    <a href="${pageContext.request.contextPath}">start_page</a>
 </body>
 </html>
 

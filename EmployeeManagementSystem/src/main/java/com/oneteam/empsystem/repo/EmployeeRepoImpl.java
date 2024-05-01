@@ -32,6 +32,24 @@ public class EmployeeRepoImpl  implements EmployeeRepo {
         }
     }
 
+    public List<Employee> findByDepartmentId(Long departmentId) {
+        String jpqlQuery = "SELECT e FROM Employee e WHERE e.department.departmentId = :departmentId";
+        try(Session session = st_openSession()){
+            return session.createQuery(jpqlQuery, Employee.class)
+                    .setParameter("departmentId", departmentId)
+                    .getResultList();
+        }
+    }
+
+    public List<Employee> findByProjectId(Long projectId) {
+        String jpqlQuery = "SELECT e FROM Employee e JOIN e.projects p WHERE p.projectId = :projectId";
+        try(Session session = st_openSession()){
+            return session.createQuery(jpqlQuery, Employee.class)
+                    .setParameter("projectId", projectId)
+                    .getResultList();
+        }
+    }
+
 
     @Override
     public List<Employee> findAll(){

@@ -22,7 +22,6 @@ public class EmployeeListServlet extends HttpServlet {
         List<Employee> employees =  employeeRepo.findAll();
         if(!employees.isEmpty()){
             request.setAttribute("employees", employees);
-            System.out.println("======>" + employees.get(0).getName());
             request.getRequestDispatcher("/pages/EmployeePages/employee-list.jsp").forward(request, response);
         }
         else{

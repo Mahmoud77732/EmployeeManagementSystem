@@ -21,7 +21,6 @@ public class DepartmentListServlet extends HttpServlet {
         List<Department> departments =  departmentRepo.findAll();
         if(!departments.isEmpty()){
             request.setAttribute("departments", departments);
-            System.out.println("======>" + departments.get(0).getName());
             request.getRequestDispatcher("/pages/DepartmentsPages/departments-list.jsp").forward(request, response);
         }
         else{

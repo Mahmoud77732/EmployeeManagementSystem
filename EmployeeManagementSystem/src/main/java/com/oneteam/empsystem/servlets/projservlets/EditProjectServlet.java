@@ -43,8 +43,6 @@ public class EditProjectServlet extends HttpServlet {
         if (employeeIds != null) {
             for (String employeeId : employeeIds) {
                 Employee employee = employeeRepo.findById(Long.parseLong(employeeId));
-                // employee.setProjects();
-                // employeeRepo.update(employee);
                 employees.add(employee);
             }
         }
@@ -53,7 +51,6 @@ public class EditProjectServlet extends HttpServlet {
             project.setProjectId(projectId);
             project.setName(name);
             project.setDescription(description);
-            // project.setEmployees(employees);
             projectRepo.update(project);
         }
 

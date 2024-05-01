@@ -5,13 +5,15 @@
     <title>Employee Management System</title>
 </head>
 <body>
-<h1><%= "Employee Management System!" %>
-</h1>
-<br/>
-<a href="employees">Employee_List</a>
-<br><br>
-<a href="departments">Department_List</a>
-<br><br>
-<a href="projects">Project_List</a>
+    <h1><%= "Employee Management System!" %>
+    </h1>
+    <br/>
+    <a href="employees">Employee_List</a>
+    <br><br>
+    <a href="departments">Department_List</a>
+    <br><br>
+    <a href="projects">Project_List</a>
+
+    <p>${userPageRole}</p>
 </body>
 </html>

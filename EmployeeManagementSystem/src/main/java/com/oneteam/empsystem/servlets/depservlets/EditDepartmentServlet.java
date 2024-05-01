@@ -39,17 +39,12 @@ public class EditDepartmentServlet extends HttpServlet {
         Long departmentId = Long.parseLong(request.getParameter("departmentId"));
         String name = request.getParameter("name");
         String description = request.getParameter("description");
-
-        /* // validation
-        if(name == null || name.trim().isEmpty() || description == null || description.trim().isEmpty()){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/DepartmentsPages/editDepartment.jsp?error=department name is required");
-            dispatcher.forward(request, response);
-        }
-        */
-
         Department department = departmentRepo.findById(departmentId);
 
         List<Employee> employees = new ArrayList<>();
+        if(!department.getEmployees().isEmpty()){
+            employees.addAll(department.getEmployees());
+        }
         String[] employeeIds = request.getParameterValues("employeeIds");
         if (employeeIds != null) {
             for (String employeeId : employeeIds) {

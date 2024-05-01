@@ -21,7 +21,6 @@ public class ProjectListServlet extends HttpServlet {
         List<Project> projects =  projectRepo.findAll();
         if(!projects.isEmpty()){
             request.setAttribute("projects", projects);
-            // System.out.println("======>" + projects.get(0).getName());
             request.getRequestDispatcher("/pages/ProjectsPages/projects-list.jsp").forward(request, response);
         }
         else{
