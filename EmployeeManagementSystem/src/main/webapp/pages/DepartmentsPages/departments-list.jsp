@@ -53,6 +53,8 @@
 
     <br><br>
     <a href="${pageContext.request.contextPath}">start_page</a>
+    <br><br>
+    <a href="logout">logout</a>
 </body>
 </html>
 

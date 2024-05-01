@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -9,11 +10,6 @@
     </h1>
     <br/>
     <a href="employees">Employee_List</a>
-    <br><br>
-    <a href="departments">Department_List</a>
-    <br><br>
-    <a href="projects">Project_List</a>
 
-    <%-- <p>userPageRole: ${userPageRole}</p>--%>
 </body>
 </html>

@@ -24,13 +24,8 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username", username);
 
             String userPageRole = getRedirectUrl(username);
-            if(userPageRole.equals("hr-dashboard.jsp")){
-                request.setAttribute("userPageRole", "hr-dashboard.jsp");
-            }
-            else if(userPageRole.equals("employee-dashboard.jsp")){
-                request.setAttribute("userPageRole", "employee-dashboard.jsp");
-            }
-            response.sendRedirect(userPageRole);
+            // response.sendRedirect("pages/AuthPages/" + userPageRole);
+            request.getRequestDispatcher("pages/AuthPages/" + userPageRole).forward(request, response);
         } else {
             request.setAttribute("error", "Invalid username or password");
             request.getRequestDispatcher("pages/AuthPages/login.jsp").forward(request, response);
@@ -55,9 +50,9 @@ public class LoginServlet extends HttpServlet {
     private String getRedirectUrl(String username) {
         User user = getUserByUsername(username);
         if (user != null && "HR manager".equals(user.getRole())) {
-            return "hr-dashboard.jsp";
+            return "hrDashboard.jsp";
         } else if (user != null && "Employee".equals(user.getRole())) {
-            return "employee-dashboard.jsp";
+            return "employeeDashboard.jsp";
         }
         return "pages/AuthPages/login.jsp";
     }

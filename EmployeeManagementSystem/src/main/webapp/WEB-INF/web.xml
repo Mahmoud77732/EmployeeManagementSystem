@@ -151,7 +151,9 @@
         <url-pattern>/employee/*</url-pattern>
     </filter-mapping>
 
-
+    <welcome-file-list>
+        <welcome-file>/pages/AuthPages/login.jsp</welcome-file>
+    </welcome-file-list>
 
     <!--    <welcome-file-list>-->
     <!--        <welcome-file>employee-list.jsp</welcome-file>-->
