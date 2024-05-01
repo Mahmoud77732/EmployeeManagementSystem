@@ -11,19 +11,26 @@ import org.example.demo4.repo.EmployeeRepoImpl;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class EditDepartmentServlet extends HttpServlet {
 
     private final DepartmentRepoImpl departmentRepo;
+    private final EmployeeRepoImpl employeeRepo;
 
     public EditDepartmentServlet() {
         this.departmentRepo = new DepartmentRepoImpl();
+        this.employeeRepo = new EmployeeRepoImpl();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long departmentId = Long.parseLong(request.getParameter("departmentId"));
         Department department = departmentRepo.findById(departmentId);
         request.setAttribute("department", department);
+        request.setAttribute("allEmployees", employeeRepo.findAll());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/DepartmentsPages/editDepartment.jsp");
         dispatcher.forward(request, response);
     }
@@ -34,16 +41,25 @@ public class EditDepartmentServlet extends HttpServlet {
         String description = request.getParameter("description");
 
         Department department = departmentRepo.findById(departmentId);
+
+        List<Employee> employees = new ArrayList<>();
+        String[] employeeIds = request.getParameterValues("employeeIds");
+        if (employeeIds != null) {
+            for (String employeeId : employeeIds) {
+                Employee employee = employeeRepo.findById(Long.parseLong(employeeId));
+                employee.setDepartment(department);
+                employeeRepo.update(employee);
+                employees.add(employee);
+            }
+        }
+
         if (department != null) {
-            System.out.println("=1===> " + department.getDepartmentId());
             department.setDepartmentId(departmentId);
             department.setName(name);
             department.setDescription(description);
-
+            department.setEmployees(employees);
             departmentRepo.update(department);
         }
-
-        System.out.println("=2===> " + department.getDepartmentId());
 
         response.sendRedirect(request.getContextPath() + "/departments"); // Redirect to employee list page
     }

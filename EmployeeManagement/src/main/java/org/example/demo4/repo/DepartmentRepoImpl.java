@@ -50,7 +50,7 @@ public class DepartmentRepoImpl {
     public void update(Department department) {
         try(Session session = st_getCurrentSession()){
             st_beginTransaction();
-            System.out.println("from update(): " + department.getDepartmentId() + " " + department.getName());
+            System.out.println("from update(): " + department.getEmployees().get(0).getId() + " " + department.getEmployees().get(0).getName());
             session.update(department);
             st_commitTransaction();
         }catch (Exception e) {
