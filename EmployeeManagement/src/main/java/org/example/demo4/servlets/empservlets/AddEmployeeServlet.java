@@ -1,4 +1,4 @@
-package org.example.demo4.empservlets;
+package org.example.demo4.servlets.empservlets;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

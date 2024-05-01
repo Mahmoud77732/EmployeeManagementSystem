@@ -1,4 +1,4 @@
-package org.example.demo4.depservlets;
+package org.example.demo4.servlets.depservlets;
 
 import org.example.demo4.repo.DepartmentRepoImpl;
 

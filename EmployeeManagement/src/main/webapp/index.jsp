@@ -11,5 +11,7 @@
     <a href="employees">Employee_List</a>
     <br><br>
     <a href="departments">Department_List</a>
+    <br><br>
+    <a href="projects">Project_List</a>
 </body>
 </html>

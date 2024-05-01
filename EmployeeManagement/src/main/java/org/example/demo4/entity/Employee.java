@@ -27,7 +27,7 @@ public class Employee {
     @Column(name = "salary")
     private BigDecimal salary;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "employees_projects",
             joinColumns = @JoinColumn(name = "employee_id"),

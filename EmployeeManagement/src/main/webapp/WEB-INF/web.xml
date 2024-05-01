@@ -7,37 +7,60 @@
     <!-- Define Employee Servlets -->
     <servlet>
         <servlet-name>EmployeeListServlet</servlet-name>
-        <servlet-class>org.example.demo4.empservlets.EmployeeListServlet</servlet-class>
+        <servlet-class>org.example.demo4.servlets.empservlets.EmployeeListServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditEmployeeServlet</servlet-name>
-        <servlet-class>org.example.demo4.empservlets.EditEmployeeServlet</servlet-class>
+        <servlet-class>org.example.demo4.servlets.empservlets.EditEmployeeServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddEmployeeServlet</servlet-name>
-        <servlet-class>org.example.demo4.empservlets.AddEmployeeServlet</servlet-class>
+        <servlet-class>org.example.demo4.servlets.empservlets.AddEmployeeServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteEmployeeServlet</servlet-name>
-        <servlet-class>org.example.demo4.empservlets.DeleteEmployeeServlet</servlet-class>
+        <servlet-class>org.example.demo4.servlets.empservlets.DeleteEmployeeServlet</servlet-class>
     </servlet>
 
     <!-- Define Department Servlets -->
     <servlet>
         <servlet-name>DepartmentListServlet</servlet-name>
-        <servlet-class>org.example.demo4.depservlets.DepartmentListServlet</servlet-class>
+        <servlet-class>org.example.demo4.servlets.depservlets.DepartmentListServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditDepartmentServlet</servlet-name>
-        <servlet-class>org.example.demo4.depservlets.EditDepartmentServlet</servlet-class>
+        <servlet-class>org.example.demo4.servlets.depservlets.EditDepartmentServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddDepartmentServlet</servlet-name>
-        <servlet-class>org.example.demo4.depservlets.AddDepartmentServlet</servlet-class>
+        <servlet-class>org.example.demo4.servlets.depservlets.AddDepartmentServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteDepartmentServlet</servlet-name>
-        <servlet-class>org.example.demo4.depservlets.DeleteDepartmentServlet</servlet-class>
+        <servlet-class>org.example.demo4.servlets.depservlets.DeleteDepartmentServlet</servlet-class>
+    </servlet>
+
+    <!-- Define Project Servlets -->
+    <servlet>
+        <servlet-name>ProjectListServlet</servlet-name>
+        <servlet-class>org.example.demo4.servlets.projservlets.ProjectListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProjectServlet</servlet-name>
+        <servlet-class>org.example.demo4.servlets.projservlets.EditProjectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProjectServlet</servlet-name>
+        <servlet-class>org.example.demo4.servlets.projservlets.AddProjectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProjectServlet</servlet-name>
+        <servlet-class>org.example.demo4.servlets.projservlets.DeleteProjectServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AssignProjectsServlet</servlet-name>
+        <servlet-class>org.example.demo4.servlets.common.AssignProjectsServlet</servlet-class>
     </servlet>
 
 
@@ -75,6 +98,29 @@
     <servlet-mapping>
         <servlet-name>DeleteDepartmentServlet</servlet-name>
         <url-pattern>/deleteDepartment</url-pattern>
+    </servlet-mapping>
+
+    <!-- Map Projects Servlets to URLs -->
+    <servlet-mapping>
+        <servlet-name>ProjectListServlet</servlet-name>
+        <url-pattern>/projects</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProjectServlet</servlet-name>
+        <url-pattern>/updateProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProjectServlet</servlet-name>
+        <url-pattern>/addProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProjectServlet</servlet-name>
+        <url-pattern>/deleteProject</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AssignProjectsServlet</servlet-name>
+        <url-pattern>/assignProjects</url-pattern>
     </servlet-mapping>
 
 

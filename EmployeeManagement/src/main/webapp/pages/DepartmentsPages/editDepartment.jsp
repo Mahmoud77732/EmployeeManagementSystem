@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Edit Department</h1>
-<form action="updateDepartment" method="post">
+<form action="updateDepartment" method="post" name="editDepartmentForm">
     <input type="hidden" name="departmentId" value="${department.departmentId}" />
     Name: <input type="text" name="name" value="${department.name}" /><br>
     Description: <input type="text" name="description" value="${department.description}" /><br>
@@ -20,6 +20,19 @@
         </c:forEach>
     </select><br/>
     <input type="submit" value="Update" />
+
+    <%-- validation
+    <script>
+        function validateForm() {
+            var name = document.forms["editDepartmentForm"]["name"].value;
+            if (name === "") {
+                alert("Department name must be filled out");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    --%>
 </form>
 </body>
 </html>

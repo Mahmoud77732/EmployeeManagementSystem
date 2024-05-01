@@ -6,6 +6,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Employees List</title>
+    <style>
+        table{
+            text-align: center;
+        }
+        table ul{
+            text-align: center;
+            list-style: none;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 <h2>Employees List</h2>
@@ -15,7 +25,8 @@
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Department ID</th>
+        <th>Department Name</th>
+        <th>Projects</th>
         <th>Salary</th>
         <th>Action</th>
     </tr>
@@ -26,7 +37,14 @@
             <td>${employee.id}</td>
             <td>${employee.name}</td>
             <td>${employee.email}</td>
-            <td>${employee.department.departmentId}</td>
+            <td>${employee.department.name}</td>
+            <td>
+                <ul>
+                    <c:forEach items="${employee.projects}" var="project">
+                        <li>_ ${project.name} _</li>
+                    </c:forEach>
+                </ul>
+            </td>
             <td>${employee.salary}</td>
             <td>
                 <a href="updateEmployee?id=${employee.id}">Edit</a>

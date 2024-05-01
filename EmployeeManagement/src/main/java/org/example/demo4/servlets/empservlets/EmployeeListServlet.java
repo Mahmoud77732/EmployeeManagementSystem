@@ -1,4 +1,4 @@
-package org.example.demo4.empservlets;
+package org.example.demo4.servlets.empservlets;
 
 import org.example.demo4.entity.Employee;
 import org.example.demo4.repo.EmployeeRepo;
