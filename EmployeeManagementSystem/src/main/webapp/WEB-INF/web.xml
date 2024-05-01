@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!-- Define Employee Servlets -->
+    <servlet>
+        <servlet-name>EmployeeListServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.empservlets.EmployeeListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditEmployeeServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.empservlets.EditEmployeeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddEmployeeServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.empservlets.AddEmployeeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteEmployeeServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.empservlets.DeleteEmployeeServlet</servlet-class>
+    </servlet>
+
+    <!-- Define Department Servlets -->
+    <servlet>
+        <servlet-name>DepartmentListServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.depservlets.DepartmentListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditDepartmentServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.depservlets.EditDepartmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddDepartmentServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.depservlets.AddDepartmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteDepartmentServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.depservlets.DeleteDepartmentServlet</servlet-class>
+    </servlet>
+
+    <!-- Define Project Servlets -->
+    <servlet>
+        <servlet-name>ProjectListServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.projservlets.ProjectListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProjectServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.projservlets.EditProjectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProjectServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.projservlets.AddProjectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProjectServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.projservlets.DeleteProjectServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AssignProjectsServlet</servlet-name>
+        <servlet-class>com.oneteam.empsystem.servlets.common.AssignProjectsServlet</servlet-class>
+    </servlet>
+
+
+    <!-- Map Employee Servlets to URLs -->
+    <servlet-mapping>
+        <servlet-name>EmployeeListServlet</servlet-name>
+        <url-pattern>/employees</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditEmployeeServlet</servlet-name>
+        <url-pattern>/updateEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddEmployeeServlet</servlet-name>
+        <url-pattern>/addEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteEmployeeServlet</servlet-name>
+        <url-pattern>/deleteEmployee</url-pattern>
+    </servlet-mapping>
+
+    <!-- Map Department Servlets to URLs -->
+    <servlet-mapping>
+        <servlet-name>DepartmentListServlet</servlet-name>
+        <url-pattern>/departments</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditDepartmentServlet</servlet-name>
+        <url-pattern>/updateDepartment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddDepartmentServlet</servlet-name>
+        <url-pattern>/addDepartment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteDepartmentServlet</servlet-name>
+        <url-pattern>/deleteDepartment</url-pattern>
+    </servlet-mapping>
+
+    <!-- Map Projects Servlets to URLs -->
+    <servlet-mapping>
+        <servlet-name>ProjectListServlet</servlet-name>
+        <url-pattern>/projects</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProjectServlet</servlet-name>
+        <url-pattern>/updateProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProjectServlet</servlet-name>
+        <url-pattern>/addProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProjectServlet</servlet-name>
+        <url-pattern>/deleteProject</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AssignProjectsServlet</servlet-name>
+        <url-pattern>/assignProjects</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!--    <welcome-file-list>-->
+    <!--        <welcome-file>employee-list.jsp</welcome-file>-->
+    <!--    </welcome-file-list>-->
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+
+</web-app>
