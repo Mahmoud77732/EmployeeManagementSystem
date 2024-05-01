@@ -2,12 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Employee Management System</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="employees">Emp_List</a>
+    <h1><%= "Employee Management System!" %>
+    </h1>
+    <br/>
+    <a href="employees">Employee_List</a>
+    <br><br>
+    <a href="departments">Department_List</a>
 </body>
 </html>

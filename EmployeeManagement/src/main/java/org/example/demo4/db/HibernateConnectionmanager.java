@@ -1,4 +1,4 @@
-package org.example.demo4.servlets;
+package org.example.demo4.db;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

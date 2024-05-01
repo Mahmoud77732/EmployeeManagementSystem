@@ -4,26 +4,44 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <!-- Define Servlets -->
+    <!-- Define Employee Servlets -->
     <servlet>
         <servlet-name>EmployeeListServlet</servlet-name>
-        <servlet-class>org.example.demo4.servlets.EmployeeListServlet</servlet-class>
+        <servlet-class>org.example.demo4.empservlets.EmployeeListServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditEmployeeServlet</servlet-name>
-        <servlet-class>org.example.demo4.servlets.EditEmployeeServlet</servlet-class>
+        <servlet-class>org.example.demo4.empservlets.EditEmployeeServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddEmployeeServlet</servlet-name>
-        <servlet-class>org.example.demo4.servlets.AddEmployeeServlet</servlet-class>
+        <servlet-class>org.example.demo4.empservlets.AddEmployeeServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteEmployeeServlet</servlet-name>
-        <servlet-class>org.example.demo4.servlets.DeleteEmployeeServlet</servlet-class>
+        <servlet-class>org.example.demo4.empservlets.DeleteEmployeeServlet</servlet-class>
+    </servlet>
+
+    <!-- Define Department Servlets -->
+    <servlet>
+        <servlet-name>DepartmentListServlet</servlet-name>
+        <servlet-class>org.example.demo4.depservlets.DepartmentListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditDepartmentServlet</servlet-name>
+        <servlet-class>org.example.demo4.depservlets.EditDepartmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddDepartmentServlet</servlet-name>
+        <servlet-class>org.example.demo4.depservlets.AddDepartmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteDepartmentServlet</servlet-name>
+        <servlet-class>org.example.demo4.depservlets.DeleteDepartmentServlet</servlet-class>
     </servlet>
 
 
-    <!-- Map Servlets to URLs -->
+    <!-- Map Employee Servlets to URLs -->
     <servlet-mapping>
         <servlet-name>EmployeeListServlet</servlet-name>
         <url-pattern>/employees</url-pattern>
@@ -39,6 +57,24 @@
     <servlet-mapping>
         <servlet-name>DeleteEmployeeServlet</servlet-name>
         <url-pattern>/deleteEmployee</url-pattern>
+    </servlet-mapping>
+
+    <!-- Map Department Servlets to URLs -->
+    <servlet-mapping>
+        <servlet-name>DepartmentListServlet</servlet-name>
+        <url-pattern>/departments</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditDepartmentServlet</servlet-name>
+        <url-pattern>/updateDepartment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddDepartmentServlet</servlet-name>
+        <url-pattern>/addDepartment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteDepartmentServlet</servlet-name>
+        <url-pattern>/deleteDepartment</url-pattern>
     </servlet-mapping>
 
 

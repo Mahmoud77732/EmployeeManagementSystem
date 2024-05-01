@@ -5,10 +5,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Employee List</title>
+    <title>Employees List</title>
 </head>
 <body>
-<h2>Employee List</h2>
+<h2>Employees List</h2>
 <table border="2" cellpadding="10">
     <thead>
     <tr>
@@ -37,6 +37,6 @@
     </tbody>
 </table>
 <br>
-<a href="addEmployee.jsp">Add New Employee</a>
+<a href="pages/EmployeePages/addEmployee.jsp">Add New Employee</a>
 </body>
 </html>

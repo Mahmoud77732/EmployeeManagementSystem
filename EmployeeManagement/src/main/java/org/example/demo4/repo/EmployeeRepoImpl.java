@@ -10,7 +10,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-import static org.example.demo4.servlets.HibernateConnectionmanager.*;
+import static org.example.demo4.db.HibernateConnectionmanager.*;
 
 public class EmployeeRepoImpl  implements EmployeeRepo {
 

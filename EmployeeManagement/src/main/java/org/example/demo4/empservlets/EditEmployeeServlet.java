@@ -1,4 +1,4 @@
-package org.example.demo4.servlets;
+package org.example.demo4.empservlets;
 
 import org.example.demo4.entity.Department;
 import org.example.demo4.entity.Employee;
@@ -10,7 +10,6 @@ import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.List;
 
 public class EditEmployeeServlet extends HttpServlet {
 
@@ -19,7 +18,7 @@ public class EditEmployeeServlet extends HttpServlet {
         EmployeeRepo employeeRepo = new EmployeeRepoImpl();
         Employee employee = employeeRepo.findById(employeeId);
         request.setAttribute("employee", employee);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/editEmployee.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/EmployeePages/editEmployee.jsp");
         dispatcher.forward(request, response);
     }
 
