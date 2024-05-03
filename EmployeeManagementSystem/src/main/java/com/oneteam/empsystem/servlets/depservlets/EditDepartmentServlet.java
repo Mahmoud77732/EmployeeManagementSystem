@@ -2,11 +2,13 @@ package com.oneteam.empsystem.servlets.depservlets;
 
 import com.oneteam.empsystem.entity.Department;
 import com.oneteam.empsystem.entity.Employee;
-import com.oneteam.empsystem.repo.DepartmentRepoImpl;
 
+import com.oneteam.empsystem.repo.repos.DepartmentRepo;
+import com.oneteam.empsystem.repo.repos.EmployeeRepo;
+import com.oneteam.empsystem.repo.reposimpl.DepartmentRepoImpl;
+import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import com.oneteam.empsystem.repo.EmployeeRepoImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,8 +16,8 @@ import java.util.List;
 
 public class EditDepartmentServlet extends HttpServlet {
 
-    private final DepartmentRepoImpl departmentRepo;
-    private final EmployeeRepoImpl employeeRepo;
+    private final DepartmentRepo departmentRepo;
+    private final EmployeeRepo employeeRepo;
 
     public EditDepartmentServlet() {
         this.departmentRepo = new DepartmentRepoImpl();

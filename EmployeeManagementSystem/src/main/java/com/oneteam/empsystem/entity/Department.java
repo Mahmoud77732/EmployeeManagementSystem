@@ -1,6 +1,7 @@
 package com.oneteam.empsystem.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,7 @@ public class Department {
     private String description;
 
     @OneToMany(mappedBy = "department", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Employee> employees;
+    private List<Employee> employees = new ArrayList<>();
 
     public Department() {
     }

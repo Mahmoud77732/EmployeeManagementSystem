@@ -1,11 +1,13 @@
 package com.oneteam.empsystem.servlets.projservlets;
 
+import com.oneteam.empsystem.repo.repos.EmployeeRepo;
+import com.oneteam.empsystem.repo.repos.ProjectRepo;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import com.oneteam.empsystem.entity.Project;
 import com.oneteam.empsystem.entity.Employee;
-import com.oneteam.empsystem.repo.EmployeeRepoImpl;
-import com.oneteam.empsystem.repo.ProjectRepoImpl;
+import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
+import com.oneteam.empsystem.repo.reposimpl.ProjectRepoImpl;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -13,8 +15,8 @@ import java.util.Set;
 
 public class EditProjectServlet extends HttpServlet {
 
-    private final ProjectRepoImpl projectRepo;
-    private final EmployeeRepoImpl employeeRepo;
+    private final ProjectRepo projectRepo;
+    private final EmployeeRepo employeeRepo;
 
     public EditProjectServlet() {
         this.projectRepo = new ProjectRepoImpl();
@@ -44,6 +46,8 @@ public class EditProjectServlet extends HttpServlet {
             for (String employeeId : employeeIds) {
                 Employee employee = employeeRepo.findById(Long.parseLong(employeeId));
                 employees.add(employee);
+                employee.getProjects().add(project);
+                employeeRepo.update(employee);
             }
         }
 
@@ -51,6 +55,10 @@ public class EditProjectServlet extends HttpServlet {
             project.setProjectId(projectId);
             project.setName(name);
             project.setDescription(description);
+            System.out.println("====> pro_emps_size: " + project.getEmployees().size() );
+            project.getEmployees().addAll(employees);
+            System.out.println("====> pro_emps_size: " + employees.size() );
+            System.out.println("====> pro_emps_size: " + project.getEmployees().size() );
             projectRepo.update(project);
         }
 

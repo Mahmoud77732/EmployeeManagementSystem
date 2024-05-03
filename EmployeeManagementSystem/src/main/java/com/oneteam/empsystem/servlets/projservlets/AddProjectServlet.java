@@ -1,10 +1,11 @@
 package com.oneteam.empsystem.servlets.projservlets;
 
+import com.oneteam.empsystem.repo.repos.ProjectRepo;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import com.oneteam.empsystem.entity.Employee;
 import com.oneteam.empsystem.entity.Project;
-import com.oneteam.empsystem.repo.ProjectRepoImpl;
+import com.oneteam.empsystem.repo.reposimpl.ProjectRepoImpl;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -21,7 +22,7 @@ public class AddProjectServlet extends HttpServlet {
         newProject.setDescription(description);
         Set<Employee> employees = new HashSet<>();
         newProject.setEmployees(employees);
-        ProjectRepoImpl projectRepo = new ProjectRepoImpl();
+        ProjectRepo projectRepo = new ProjectRepoImpl();
         projectRepo.save(newProject);
 
         response.sendRedirect(request.getContextPath() + "/projects"); // Redirect to employee list page

@@ -1,6 +1,7 @@
 package com.oneteam.empsystem.servlets.empservlets;
 
-import com.oneteam.empsystem.repo.EmployeeRepoImpl;
+import com.oneteam.empsystem.repo.repos.EmployeeRepo;
+import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -12,8 +13,8 @@ public class DeleteEmployeeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long employeeId = Long.parseLong(request.getParameter("id"));
-        EmployeeRepoImpl employeeRepo = new EmployeeRepoImpl();
-        employeeRepo.remove(employeeId);
+        EmployeeRepo employeeRepo = new EmployeeRepoImpl();
+        employeeRepo.remove(employeeRepo.findById(employeeId));
 
         response.sendRedirect(request.getContextPath() + "/employees"); // Redirect to employees list page
     }

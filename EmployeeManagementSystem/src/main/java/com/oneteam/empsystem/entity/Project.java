@@ -19,7 +19,7 @@ public class Project {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "projects", fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToMany(mappedBy = "projects", fetch = FetchType.EAGER)
     private Set<Employee> employees = new HashSet<>();
 
     public Project() {

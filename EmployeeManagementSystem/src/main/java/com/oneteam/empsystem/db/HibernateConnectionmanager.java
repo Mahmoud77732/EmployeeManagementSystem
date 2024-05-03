@@ -11,6 +11,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 public class HibernateConnectionmanager {
 
     private static SessionFactory sessionFactory;
+    private static ThreadLocal<Session> sessionThreadLocal = new ThreadLocal<>();
 
     public static SessionFactory st_getSessionFactory() {
         if(sessionFactory == null){
@@ -36,35 +37,42 @@ public class HibernateConnectionmanager {
         }
     }
 
-    public static Session st_getCurrentSession(){
-        return st_getSessionFactory().getCurrentSession();
-    }
-
-    public static Session st_openSession(){
-        return st_getSessionFactory().openSession();
+    public static Session st_getSession(){
+        Session session = sessionThreadLocal.get();
+        if(session == null || !session.isOpen()){
+            session = st_getSessionFactory().openSession();
+            sessionThreadLocal.set(session);
+        }
+        return session;
     }
 
     public static void st_closeSession(){
-        st_getSessionFactory().getCurrentSession().close();
+        Session session = sessionThreadLocal.get();
+        if(session != null && session.isOpen()){
+            session.close();
+            sessionThreadLocal.remove();
+        }
     }
 
     public static void st_beginTransaction(){
-        st_getCurrentSession().beginTransaction();
+        Transaction transaction = st_getSession().beginTransaction();
+        sessionThreadLocal.set(st_getSession());
     }
 
     public static void st_commitTransaction(){
-        st_getCurrentSession().getTransaction().commit();
+        Transaction transaction = st_getSession().getTransaction();
+        if (transaction != null && transaction.isActive()) {
+            transaction.commit();
+        }
+        st_closeSession();
     }
 
     public static void st_rollbackTransaction(){
-        st_getCurrentSession().getTransaction().rollback();
+        Transaction transaction = st_getSession().getTransaction();
+        if (transaction != null && transaction.isActive()) {
+            transaction.rollback();
+        }
+        st_closeSession();
     }
 
-    public static boolean st_isActiveTransaction(){
-        return st_getCurrentSession().getTransaction().isActive();
-    }
-
-    public static Transaction st_getTransaction(){
-        return st_getCurrentSession().getTransaction();
-    }
 }

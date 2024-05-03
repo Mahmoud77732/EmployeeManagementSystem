@@ -1,10 +1,11 @@
 package com.oneteam.empsystem.servlets.empservlets;
 
+import com.oneteam.empsystem.repo.repos.EmployeeRepo;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import com.oneteam.empsystem.entity.Department;
 import com.oneteam.empsystem.entity.Employee;
-import com.oneteam.empsystem.repo.EmployeeRepoImpl;
+import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -29,7 +30,7 @@ public class AddEmployeeServlet extends HttpServlet {
         }
         newEmployee.setSalary(salary);
 
-        EmployeeRepoImpl employeeRepo = new EmployeeRepoImpl();
+        EmployeeRepo employeeRepo = new EmployeeRepoImpl();
         employeeRepo.save(newEmployee);
 
         response.sendRedirect(request.getContextPath() + "/employees"); // Redirect to employee list page

@@ -1,7 +1,8 @@
 package com.oneteam.empsystem.servlets.empservlets;
 
 import com.oneteam.empsystem.entity.Employee;
-import com.oneteam.empsystem.repo.EmployeeRepoImpl;
+import com.oneteam.empsystem.repo.repos.EmployeeRepo;
+import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -9,23 +10,30 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-public class EmployeeListServlet extends HttpServlet {
-    private final EmployeeRepoImpl employeeRepo;
 
-    public EmployeeListServlet() {
-        this.employeeRepo = new EmployeeRepoImpl(); // Initialize your DAO here
+public class EmployeeListServlet extends HttpServlet {
+
+    private EmployeeRepo employeeRepo;
+
+    public void init() {
+        this.employeeRepo = new EmployeeRepoImpl();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Employee> employees =  employeeRepo.findAll();
-        if(!employees.isEmpty()){
-            request.setAttribute("employees", employees);
-            request.getRequestDispatcher("/pages/EmployeePages/employee-list.jsp").forward(request, response);
+        try{
+            List<Employee> employees =  employeeRepo.findAll();
+            if(!employees.isEmpty()){
+                request.setAttribute("employees", employees);
+                request.getRequestDispatcher("/pages/EmployeePages/employee-list.jsp").forward(request, response);
+            }
+            else{
+                request.setAttribute("employees", null);
+                request.getRequestDispatcher("/pages/EmployeePages/employee-list.jsp").forward(request, response);
+            }
         }
-        else{
-            request.setAttribute("employees", null);
-            request.getRequestDispatcher("/pages/EmployeePages/employee-list.jsp").forward(request, response);
+        catch(Exception ex){
+            System.err.println(ex.getMessage());
         }
     }
 

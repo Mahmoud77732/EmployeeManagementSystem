@@ -39,7 +39,7 @@ public class AuthorizationFilter implements Filter {
 
     // Helper method to get user by username
     public User getUserByUsername(String username) {
-        try(Session session = st_openSession()){
+        try(Session session = st_getSession()){
             String hql = "FROM User WHERE username = :username";
             Query<User> query = session.createQuery(hql, User.class);
             query.setParameter("username", username);

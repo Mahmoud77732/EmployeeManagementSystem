@@ -1,10 +1,11 @@
 package com.oneteam.empsystem.servlets.depservlets;
 
+import com.oneteam.empsystem.repo.repos.DepartmentRepo;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import com.oneteam.empsystem.entity.Department;
 import com.oneteam.empsystem.entity.Employee;
-import com.oneteam.empsystem.repo.DepartmentRepoImpl;
+import com.oneteam.empsystem.repo.reposimpl.DepartmentRepoImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class AddDepartmentServlet extends HttpServlet {
         newDepartment.setDescription(description);
         List<Employee> employees = new ArrayList<>();
         newDepartment.setEmployees(employees);
-        DepartmentRepoImpl departmentRepo = new DepartmentRepoImpl();
+        DepartmentRepo departmentRepo = new DepartmentRepoImpl();
         departmentRepo.save(newDepartment);
 
         response.sendRedirect(request.getContextPath() + "/departments"); // Redirect to employee list page

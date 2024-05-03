@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     private boolean authenticate(String username, String password) {
-        try(Session session = st_openSession()) {
+        try(Session session = st_getSession()) {
             st_beginTransaction();
             User user = getUserByUsername(username);
             if (user != null && user.getPassword().equals(password)) {
@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
             }
             st_commitTransaction();
         } catch (Exception ex) {
-            if (st_isActiveTransaction()) st_rollbackTransaction();
+            if (st_getSession().getTransaction().isActive()) st_rollbackTransaction();
             System.err.println(ex.getMessage());
         }
         return false;
@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     public User getUserByUsername(String username) {
-        try(Session session = st_openSession()){
+        try(Session session = st_getSession()){
             String hql = "FROM User WHERE username = :username";
             Query<User> query = session.createQuery(hql, User.class);
             query.setParameter("username", username);

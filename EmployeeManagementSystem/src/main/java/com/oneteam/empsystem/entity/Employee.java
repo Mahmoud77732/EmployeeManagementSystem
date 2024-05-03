@@ -20,14 +20,14 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
     private Department department;
 
     @Column(name = "salary")
     private BigDecimal salary;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "employees_projects",
             joinColumns = @JoinColumn(name = "employee_id"),
