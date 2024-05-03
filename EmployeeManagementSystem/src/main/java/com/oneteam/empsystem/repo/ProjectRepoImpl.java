@@ -16,24 +16,6 @@ public class ProjectRepoImpl {
     public ProjectRepoImpl() {
     }
 
-    public List<Project> findAll() {
-        try(Session session = st_openSession()){
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Project> criteria = builder.createQuery(Project.class);
-            Root<Project> root = criteria.from(Project.class);
-            criteria.select(root);
-            Query<Project> query = session.createQuery(criteria);
-            return query.getResultList();
-            // return session.createQuery("FROM Department", Department.class).getResultList();
-        }
-    }
-
-    public Project findById(Long id) {
-        try (Session session = st_openSession()) {
-            return session.get(Project.class, id);
-        }
-    }
-
     public void save(Project project) {
         try (Session session = st_openSession()) {
             st_beginTransaction();
@@ -44,6 +26,12 @@ public class ProjectRepoImpl {
                 st_rollbackTransaction();
             }
             System.err.println(e.getMessage());
+        }
+    }
+
+    public Project findById(Long id) {
+        try (Session session = st_openSession()) {
+            return session.get(Project.class, id);
         }
     }
 
@@ -73,6 +61,18 @@ public class ProjectRepoImpl {
                 st_rollbackTransaction();
             }
             System.err.println(e.getMessage());
+        }
+    }
+
+    public List<Project> findAll() {
+        try(Session session = st_openSession()){
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Project> criteria = builder.createQuery(Project.class);
+            Root<Project> root = criteria.from(Project.class);
+            criteria.select(root);
+            Query<Project> query = session.createQuery(criteria);
+            return query.getResultList();
+            // return session.createQuery("FROM Department", Department.class).getResultList();
         }
     }
 

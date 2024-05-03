@@ -6,15 +6,11 @@ import com.oneteam.empsystem.repo.DepartmentRepoImpl;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import com.oneteam.empsystem.repo.EmployeeRepo;
 import com.oneteam.empsystem.repo.EmployeeRepoImpl;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class EditDepartmentServlet extends HttpServlet {
 

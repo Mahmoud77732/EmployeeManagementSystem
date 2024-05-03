@@ -2,7 +2,6 @@ package com.oneteam.empsystem.servlets.empservlets;
 
 import com.oneteam.empsystem.entity.Department;
 import com.oneteam.empsystem.entity.Employee;
-import com.oneteam.empsystem.repo.EmployeeRepo;
 import com.oneteam.empsystem.repo.EmployeeRepoImpl;
 
 import jakarta.servlet.*;
@@ -15,7 +14,7 @@ public class EditEmployeeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long employeeId = Long.parseLong(request.getParameter("id"));
-        EmployeeRepo employeeRepo = new EmployeeRepoImpl();
+        EmployeeRepoImpl employeeRepo = new EmployeeRepoImpl();
         Employee employee = employeeRepo.findById(employeeId);
         request.setAttribute("employee", employee);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/EmployeePages/editEmployee.jsp");
@@ -28,7 +27,7 @@ public class EditEmployeeServlet extends HttpServlet {
         String email = request.getParameter("email");
         BigDecimal salary = new BigDecimal(request.getParameter("salary"));
 
-        EmployeeRepo employeeRepo = new EmployeeRepoImpl();
+        EmployeeRepoImpl employeeRepo = new EmployeeRepoImpl();
         Employee employee = employeeRepo.findById(employeeId);
         if (employee != null) {
             employee.setId(employeeId);

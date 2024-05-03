@@ -4,7 +4,6 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import com.oneteam.empsystem.entity.Employee;
 import com.oneteam.empsystem.entity.Project;
-import com.oneteam.empsystem.repo.EmployeeRepo;
 import com.oneteam.empsystem.repo.EmployeeRepoImpl;
 import com.oneteam.empsystem.repo.ProjectRepoImpl;
 
@@ -13,7 +12,7 @@ import java.util.List;
 
 public class AssignProjectsServlet extends HttpServlet {
 
-    private final EmployeeRepo employeeRepo;
+    private final EmployeeRepoImpl employeeRepo;
     private final ProjectRepoImpl projectRepo;
 
     public AssignProjectsServlet() {

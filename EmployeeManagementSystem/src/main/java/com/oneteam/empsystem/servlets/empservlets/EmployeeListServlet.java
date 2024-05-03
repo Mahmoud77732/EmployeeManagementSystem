@@ -1,7 +1,6 @@
 package com.oneteam.empsystem.servlets.empservlets;
 
 import com.oneteam.empsystem.entity.Employee;
-import com.oneteam.empsystem.repo.EmployeeRepo;
 import com.oneteam.empsystem.repo.EmployeeRepoImpl;
 
 import jakarta.servlet.*;
@@ -11,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class EmployeeListServlet extends HttpServlet {
-    private final EmployeeRepo employeeRepo;
+    private final EmployeeRepoImpl employeeRepo;
 
     public EmployeeListServlet() {
         this.employeeRepo = new EmployeeRepoImpl(); // Initialize your DAO here
