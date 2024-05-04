@@ -19,6 +19,14 @@
     </style>
 </head>
 <body>
+    <%--
+    <%
+        if(session.getAttribute("username") == null || (!session.getAttribute("role").equals("HR manager") || (!session.getAttribute("role").equals("Employee")))){
+            response.sendRedirect(request.getContextPath());
+        }
+    %>
+    --%>
+
     <h2>Employees List</h2>
     <table border="2" cellpadding="10">
         <thead>

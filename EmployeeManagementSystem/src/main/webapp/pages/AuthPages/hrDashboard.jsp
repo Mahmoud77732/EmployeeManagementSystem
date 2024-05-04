@@ -6,6 +6,14 @@
     <title>HR - Employee Management System</title>
 </head>
 <body>
+    <%--
+    <%
+        if(session.getAttribute("username") == null || !session.getAttribute("role").equals("HR manager")){
+            response.sendRedirect("/login");
+        }
+    %>
+    --%>
+
     <h1><%= "HR - Employee Management System!" %>
     </h1>
     <br/>

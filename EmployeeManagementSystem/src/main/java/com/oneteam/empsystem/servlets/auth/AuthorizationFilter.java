@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import static com.oneteam.empsystem.db.HibernateConnectionmanager.*;
 
-@WebFilter(urlPatterns = {"/hr/*", "/employee/*"})
+@WebFilter(urlPatterns = {"/*"})
 public class AuthorizationFilter implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -19,7 +19,14 @@ public class AuthorizationFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        System.out.println("******> from _ AuthorizationFilter.doFilter()");
+
+        String contextPath = httpRequest.getContextPath();
+
+        String path = httpRequest.getRequestURI();
+        if(path.equals(contextPath) || path.equals(contextPath+"/") || path.contains("login") || path.contains("logout") || path.contains("/register")){
+            chain.doFilter(request, response);
+            return;
+        }
 
         HttpSession session = httpRequest.getSession(false);
         boolean isLoggedIn = (session != null && session.getAttribute("username") != null);
@@ -27,15 +34,14 @@ public class AuthorizationFilter implements Filter {
         if (isLoggedIn) {
             String username = (String) session.getAttribute("username");
             User user = getUserByUsername(username);
-
-            if (user != null && ("HR manager".equals(user.getRole()) && httpRequest.getRequestURI().startsWith("/hr/")) ||
-                    ("Employee".equals(user.getRole()) && httpRequest.getRequestURI().startsWith("/employee/"))) {
+            if (user != null && ("HR manager".equals(user.getRole())) ||
+                    ("Employee".equals(user.getRole()))) {
                 chain.doFilter(request, response);
             } else {
                 httpResponse.sendRedirect("pages/AuthPages/login.jsp");
             }
         } else {
-            httpResponse.sendRedirect("pages/AuthPages/login.jsp");
+            httpResponse.sendRedirect( httpRequest.getContextPath());
         }
     }
 

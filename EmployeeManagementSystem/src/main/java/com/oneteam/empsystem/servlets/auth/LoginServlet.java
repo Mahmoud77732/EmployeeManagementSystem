@@ -31,11 +31,16 @@ public class LoginServlet extends HttpServlet {
             else{
                 session.setAttribute("role", "Employee");
             }
+
+            // HttpSession is used with sendRedirect()
             // response.sendRedirect(request.getContextPath() + "/pages/AuthPages/" + userPageRole);
+
+            // u can use req.setAttribute instead of HttpSession
             request.getRequestDispatcher("pages/AuthPages/" + userPageRole).forward(request, response);
         } else {
             request.setAttribute("error", "Invalid username or password");
             request.getRequestDispatcher("pages/AuthPages/login.jsp").forward(request, response);
+            // response.sendRedirect("/login.jsp?error=true");
         }
     }
 
@@ -58,7 +63,7 @@ public class LoginServlet extends HttpServlet {
         User user = getUserByUsername(username);
         if (user != null && "HR manager".equals(user.getRole())) {
             return "hrDashboard.jsp";
-        } else if (user != null && ("Employee".equals(user.getRole()) || user.getRole().isEmpty())) {
+        } else if (user != null && ("Employee".equals(user.getRole()))) {
             return "employeeDashboard.jsp";
         }
         else{

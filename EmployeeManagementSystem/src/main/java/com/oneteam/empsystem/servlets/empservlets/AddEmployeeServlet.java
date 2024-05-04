@@ -22,6 +22,10 @@ public class AddEmployeeServlet extends HttpServlet {
     private final EmployeeRepo employeeRepo = new EmployeeRepoImpl();
     private final DepartmentRepo departmentRepo = new DepartmentRepoImpl();
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendError(405);
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -52,7 +56,6 @@ public class AddEmployeeServlet extends HttpServlet {
         user.setPassword(password); // by default
         user.setRole(role);
         userRepo.save(user);
-        System.out.println("========> 1 " + user.getUsername());
 
         employeeRepo.save(newEmployee);
         response.sendRedirect(request.getContextPath() + "/employees"); // Redirect to employee list page
