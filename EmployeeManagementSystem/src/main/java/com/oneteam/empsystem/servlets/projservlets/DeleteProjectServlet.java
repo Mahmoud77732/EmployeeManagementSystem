@@ -23,6 +23,7 @@ public class DeleteProjectServlet  extends HttpServlet {
         EmployeeRepoImpl employeeRepo = new EmployeeRepoImpl();
         Project project = projectGenericRepo.findById(projectId);
 
+        // update employee info after project info changing
         Set<Employee> employees = project.getEmployees();
         for(Employee emp : employees){
             emp.getProjects().remove(project);

@@ -12,6 +12,8 @@
         <%-- Department ID: <input type="text" name="departmentId" /><br>--%>
         Department Name: <input type="text" name="departmentName" /><br>
         Salary: <input type="text" name="salary" /><br>
+        Default Password: <input type="password" name="password"><br>
+        Default Role: <input type="text" name="role"><br>
         <input type="submit" value="Add" />
     </form>
 </body>

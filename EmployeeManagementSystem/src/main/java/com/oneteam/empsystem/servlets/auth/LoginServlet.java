@@ -25,15 +25,13 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username", username);
 
             String userPageRole = getRedirectUrl(username);
-            // session.setAttribute("userPageRole", userPageRole);
-            System.out.println("=====> " + userPageRole);
             if(userPageRole.equals("hrDashboard.jsp")){
                 session.setAttribute("role", "HR manager");
             }
             else{
                 session.setAttribute("role", "Employee");
             }
-            // response.sendRedirect("pages/AuthPages/" + userPageRole);
+            // response.sendRedirect(request.getContextPath() + "/pages/AuthPages/" + userPageRole);
             request.getRequestDispatcher("pages/AuthPages/" + userPageRole).forward(request, response);
         } else {
             request.setAttribute("error", "Invalid username or password");

@@ -1,2 +1,2 @@
 # EmployeeManagementSystem
-Employee management system created in servlet, postgres
+Employee management system created in servlet, jsp, hibernate postgres

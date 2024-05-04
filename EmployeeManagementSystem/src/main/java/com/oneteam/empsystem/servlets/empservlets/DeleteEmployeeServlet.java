@@ -2,11 +2,14 @@ package com.oneteam.empsystem.servlets.empservlets;
 
 import com.oneteam.empsystem.entity.Department;
 import com.oneteam.empsystem.entity.Employee;
+import com.oneteam.empsystem.entity.User;
 import com.oneteam.empsystem.repo.repos.DepartmentRepo;
 import com.oneteam.empsystem.repo.repos.EmployeeRepo;
+import com.oneteam.empsystem.repo.repos.UserRepo;
 import com.oneteam.empsystem.repo.reposimpl.DepartmentRepoImpl;
 import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 
+import com.oneteam.empsystem.repo.reposimpl.UserRepoImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -22,9 +25,16 @@ public class DeleteEmployeeServlet extends HttpServlet {
         EmployeeRepo employeeRepo = new EmployeeRepoImpl();
         DepartmentRepo departmentRepo = new DepartmentRepoImpl();
         Employee employee = employeeRepo.findById(employeeId);
-        Department department = employee.getDepartment();
-        department.getEmployees().remove(employee);
-        departmentRepo.update(department);
+        // delete this employee from it's department also
+        Department department = (employee.getDepartment() == null) ? null : employee.getDepartment();
+        if(department != null){
+            department.getEmployees().remove(employee);
+            departmentRepo.update(department);
+        }
+        // delete user also
+        UserRepo userRepo = new UserRepoImpl();
+        User user = userRepo.findByUsername(employee.getName());
+        userRepo.remove(user);
         employeeRepo.remove(employee);
 
         response.sendRedirect(request.getContextPath() + "/employees"); // Redirect to employees list page

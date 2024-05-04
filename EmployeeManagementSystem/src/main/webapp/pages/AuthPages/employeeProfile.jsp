@@ -20,6 +20,9 @@
         </c:forEach>
     </ul>
 
+    <p><strong>Password:</strong> ${user.password}</p>
+    <p><strong>Role:</strong> ${user.role}</p>
+
     <a href="logout">logout</a>
 </body>
 </html>

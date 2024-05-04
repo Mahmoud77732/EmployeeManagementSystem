@@ -39,9 +39,9 @@ public class EditProjectServlet extends HttpServlet {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
 
-
         Project project = projectRepo.findById(projectId);
 
+        // update the employee info
         Set<Employee> employees = new HashSet<>();
         String[] employeeIds = request.getParameterValues("employeeIds");
         if (employeeIds != null) {
@@ -53,6 +53,7 @@ public class EditProjectServlet extends HttpServlet {
             }
         }
 
+        // set the new project values
         if (project != null) {
             project.setProjectId(projectId);
             project.setName(name);

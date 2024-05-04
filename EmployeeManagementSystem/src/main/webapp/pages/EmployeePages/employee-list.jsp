@@ -67,10 +67,10 @@
     <br>
     <c:if test="${userPageRole eq 'HR manager'}">
         <a href="pages/EmployeePages/addEmployee.jsp">Add New Employee</a>
+        <br><br>
+        <%-- <a href="login">start_page</a>--%>
     </c:if>
-    <br><br>
-    <a href="${pageContext.request.contextPath}">start_page</a>
-    <br><br>
+    <%-- <a href="${pageContext.request.contextPath}/pages/AuthPages/employeeDashboard.jsp">start_page</a>--%>
     <a href="logout">logout</a>
 </body>
 </html>

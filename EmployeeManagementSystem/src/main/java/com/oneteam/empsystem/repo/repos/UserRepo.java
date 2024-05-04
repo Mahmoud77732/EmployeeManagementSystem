@@ -5,4 +5,6 @@ import com.oneteam.empsystem.entity.User;
 
 public interface UserRepo extends GenericRepo<User, Long> {
 
+    User findByUsername(String username);
+
 }

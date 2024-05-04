@@ -1,4 +1,6 @@
 package com.oneteam.empsystem.repo.reposimpl;
+import com.oneteam.empsystem.entity.Employee;
+import com.oneteam.empsystem.entity.User;
 import com.oneteam.empsystem.repo.repos.GenericRepo;
 import org.hibernate.Session;
 
