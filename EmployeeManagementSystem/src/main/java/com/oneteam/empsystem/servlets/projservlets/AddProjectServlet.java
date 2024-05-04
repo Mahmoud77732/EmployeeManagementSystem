@@ -2,6 +2,7 @@ package com.oneteam.empsystem.servlets.projservlets;
 
 import com.oneteam.empsystem.repo.repos.ProjectRepo;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import com.oneteam.empsystem.entity.Employee;
 import com.oneteam.empsystem.entity.Project;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+@WebServlet("/addProject")
 public class AddProjectServlet extends HttpServlet {
 
     @Override

@@ -8,12 +8,14 @@ import com.oneteam.empsystem.repo.repos.EmployeeRepo;
 import com.oneteam.empsystem.repo.reposimpl.DepartmentRepoImpl;
 import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@WebServlet("/updateDepartment")
 public class EditDepartmentServlet extends HttpServlet {
 
     private final DepartmentRepo departmentRepo;

@@ -7,11 +7,13 @@ import com.oneteam.empsystem.repo.repos.UserRepo;
 import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 import com.oneteam.empsystem.repo.reposimpl.UserRepoImpl;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 
+@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

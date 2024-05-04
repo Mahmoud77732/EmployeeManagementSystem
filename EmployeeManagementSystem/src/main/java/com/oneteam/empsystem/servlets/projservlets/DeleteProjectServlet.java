@@ -6,11 +6,13 @@ import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 import com.oneteam.empsystem.repo.repos.GenericRepo;
 import com.oneteam.empsystem.repo.reposimpl.GenericRepoImpl;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.util.Set;
 
+@WebServlet("/deleteProject")
 public class DeleteProjectServlet  extends HttpServlet {
 
     @Override

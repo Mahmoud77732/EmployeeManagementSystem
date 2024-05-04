@@ -8,16 +8,13 @@ import com.oneteam.empsystem.repo.reposimpl.DepartmentRepoImpl;
 import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.List;
 
-import static com.oneteam.empsystem.db.HibernateConnectionmanager.*;
-
+@WebServlet("/updateEmployee")
 public class EditEmployeeServlet extends HttpServlet {
 
     private final EmployeeRepo employeeRepo;

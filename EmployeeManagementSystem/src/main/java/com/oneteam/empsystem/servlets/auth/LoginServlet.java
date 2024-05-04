@@ -2,6 +2,7 @@ package com.oneteam.empsystem.servlets.auth;
 
 import com.oneteam.empsystem.entity.User;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -10,6 +11,7 @@ import java.io.IOException;
 
 import static com.oneteam.empsystem.db.HibernateConnectionmanager.*;
 
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

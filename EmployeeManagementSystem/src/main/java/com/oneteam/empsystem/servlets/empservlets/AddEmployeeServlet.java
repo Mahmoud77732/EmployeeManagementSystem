@@ -1,7 +1,10 @@
 package com.oneteam.empsystem.servlets.empservlets;
 
+import com.oneteam.empsystem.repo.repos.DepartmentRepo;
 import com.oneteam.empsystem.repo.repos.EmployeeRepo;
+import com.oneteam.empsystem.repo.reposimpl.DepartmentRepoImpl;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import com.oneteam.empsystem.entity.Department;
 import com.oneteam.empsystem.entity.Employee;
@@ -10,7 +13,11 @@ import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+@WebServlet("/addEmployee")
 public class AddEmployeeServlet extends HttpServlet {
+
+    private final EmployeeRepo employeeRepo = new EmployeeRepoImpl();
+    private final DepartmentRepo departmentRepo = new DepartmentRepoImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
@@ -19,20 +26,19 @@ public class AddEmployeeServlet extends HttpServlet {
         Employee newEmployee = new Employee();
         newEmployee.setName(name);
         newEmployee.setEmail(email);
-        if(!request.getParameter("departmentId").trim().isEmpty()){
-            Long departmentId = Long.parseLong(request.getParameter("departmentId"));
-            Department department = new Department();
-            department.setDepartmentId(departmentId);
+        newEmployee.setSalary(salary);
+        if(!request.getParameter("departmentName").trim().isEmpty()){
+            String departmentName = (request.getParameter("departmentName"));
+            Department department = departmentRepo.findDepartmentByName(departmentName);
+            department.setName(departmentName);
             newEmployee.setDepartment(department);
+            department.getEmployees().add(newEmployee);
+            departmentRepo.update(department);
         }
         else{
             newEmployee.setDepartment(null);
         }
-        newEmployee.setSalary(salary);
-
-        EmployeeRepo employeeRepo = new EmployeeRepoImpl();
         employeeRepo.save(newEmployee);
-
         response.sendRedirect(request.getContextPath() + "/employees"); // Redirect to employee list page
     }
 }

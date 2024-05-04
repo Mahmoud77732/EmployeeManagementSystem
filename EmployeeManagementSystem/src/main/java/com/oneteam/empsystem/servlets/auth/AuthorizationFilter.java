@@ -2,6 +2,7 @@ package com.oneteam.empsystem.servlets.auth;
 
 import com.oneteam.empsystem.entity.User;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.*;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -10,6 +11,7 @@ import java.io.IOException;
 
 import static com.oneteam.empsystem.db.HibernateConnectionmanager.*;
 
+@WebFilter(urlPatterns = {"/hr/*", "/employee/*"})
 public class AuthorizationFilter implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

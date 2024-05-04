@@ -1,6 +1,8 @@
 package com.oneteam.empsystem.servlets.common;
 
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import com.oneteam.empsystem.entity.Employee;
 import com.oneteam.empsystem.entity.Project;
@@ -10,6 +12,7 @@ import com.oneteam.empsystem.repo.reposimpl.ProjectRepoImpl;
 import java.io.IOException;
 import java.util.List;
 
+@WebServlet("/assignProjects")
 public class AssignProjectsServlet extends HttpServlet {
 
     private final EmployeeRepoImpl employeeRepo;

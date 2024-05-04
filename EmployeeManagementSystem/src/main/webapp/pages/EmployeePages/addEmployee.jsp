@@ -9,7 +9,8 @@
     <form action="${pageContext.request.contextPath}/addEmployee" method="post">
         Name: <input type="text" name="name" /><br>
         mail: <input type="text" name="email" /><br>
-        Department ID: <input type="text" name="departmentId" /><br>
+        <%-- Department ID: <input type="text" name="departmentId" /><br>--%>
+        Department Name: <input type="text" name="departmentName" /><br>
         Salary: <input type="text" name="salary" /><br>
         <input type="submit" value="Add" />
     </form>

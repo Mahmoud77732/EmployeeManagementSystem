@@ -2,6 +2,7 @@ package com.oneteam.empsystem.servlets.depservlets;
 
 import com.oneteam.empsystem.repo.repos.DepartmentRepo;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import com.oneteam.empsystem.entity.Department;
 import com.oneteam.empsystem.repo.reposimpl.DepartmentRepoImpl;
@@ -9,6 +10,7 @@ import com.oneteam.empsystem.repo.reposimpl.DepartmentRepoImpl;
 import java.io.IOException;
 import java.util.List;
 
+@WebServlet("/departments")
 public class DepartmentListServlet extends HttpServlet {
 
     private final DepartmentRepo departmentRepo;

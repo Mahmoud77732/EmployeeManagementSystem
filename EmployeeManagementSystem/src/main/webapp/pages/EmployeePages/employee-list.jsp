@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--<%@ taglib uri="jakarta.tags.core" prefix="c" %>--%>
@@ -50,7 +51,10 @@
                 <c:if test="${userPageRole eq 'HR manager'}">
                     <td>${employee.salary}</td>
                     <td>
-
+                        <%--
+                            when you use '/' before the _path_ then you want to go to another context
+                            if you didn't use it then you tell it that there is an endpoint on this context
+                        --%>
                         <a href="updateEmployee?id=${employee.id}">Edit</a>
                         <a href="deleteEmployee?id=${employee.id}">Delete</a>
 

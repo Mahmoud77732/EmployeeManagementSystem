@@ -4,10 +4,12 @@ import com.oneteam.empsystem.entity.Employee;
 import com.oneteam.empsystem.repo.repos.EmployeeRepo;
 import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
 
+@WebServlet("/empProfile")
 public class EmployeeProfileServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -8,11 +8,13 @@ import com.oneteam.empsystem.repo.repos.EmployeeRepo;
 import com.oneteam.empsystem.repo.reposimpl.DepartmentRepoImpl;
 import com.oneteam.empsystem.repo.reposimpl.EmployeeRepoImpl;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.util.List;
 
+@WebServlet("/deleteDepartment")
 public class DeleteDepartmentServlet extends HttpServlet {
 
     @Override

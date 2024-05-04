@@ -3,6 +3,7 @@ package com.oneteam.empsystem.servlets.projservlets;
 import com.oneteam.empsystem.repo.repos.EmployeeRepo;
 import com.oneteam.empsystem.repo.repos.ProjectRepo;
 import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import com.oneteam.empsystem.entity.Project;
 import com.oneteam.empsystem.entity.Employee;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+@WebServlet("/updateProject")
 public class EditProjectServlet extends HttpServlet {
 
     private final ProjectRepo projectRepo;
