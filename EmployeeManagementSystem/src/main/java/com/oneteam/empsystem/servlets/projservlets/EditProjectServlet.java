@@ -55,10 +55,7 @@ public class EditProjectServlet extends HttpServlet {
             project.setProjectId(projectId);
             project.setName(name);
             project.setDescription(description);
-            System.out.println("====> pro_emps_size: " + project.getEmployees().size() );
             project.getEmployees().addAll(employees);
-            System.out.println("====> pro_emps_size: " + employees.size() );
-            System.out.println("====> pro_emps_size: " + project.getEmployees().size() );
             projectRepo.update(project);
         }
 

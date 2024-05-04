@@ -27,8 +27,10 @@
             <th>Email</th>
             <th>Department Name</th>
             <th>Projects</th>
-            <th>Salary</th>
-            <th>Action</th>
+            <c:if test="${userPageRole eq 'HR manager'}">
+                <th>Salary</th>
+                <th>Action</th>
+            </c:if>
         </tr>
         </thead>
         <tbody>
@@ -45,17 +47,23 @@
                         </c:forEach>
                     </ul>
                 </td>
-                <td>${employee.salary}</td>
-                <td>
-                    <a href="updateEmployee?id=${employee.id}">Edit</a>
-                    <a href="deleteEmployee?id=${employee.id}">Delete</a>
-                </td>
+                <c:if test="${userPageRole eq 'HR manager'}">
+                    <td>${employee.salary}</td>
+                    <td>
+
+                        <a href="updateEmployee?id=${employee.id}">Edit</a>
+                        <a href="deleteEmployee?id=${employee.id}">Delete</a>
+
+                    </td>
+                </c:if>
             </tr>
         </c:forEach>
         </tbody>
     </table>
     <br>
-    <a href="pages/EmployeePages/addEmployee.jsp">Add New Employee</a>
+    <c:if test="${userPageRole eq 'HR manager'}">
+        <a href="pages/EmployeePages/addEmployee.jsp">Add New Employee</a>
+    </c:if>
     <br><br>
     <a href="${pageContext.request.contextPath}">start_page</a>
     <br><br>

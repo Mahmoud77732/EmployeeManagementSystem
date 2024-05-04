@@ -23,6 +23,11 @@ public class EmployeeListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
             List<Employee> employees =  employeeRepo.findAll();
+            HttpSession session = request.getSession(false);
+            if(session.getAttribute("username") != null){
+                String userRole = session.getAttribute("role").toString();
+                request.setAttribute("userPageRole", userRole);
+            }
             if(!employees.isEmpty()){
                 request.setAttribute("employees", employees);
                 request.getRequestDispatcher("/pages/EmployeePages/employee-list.jsp").forward(request, response);

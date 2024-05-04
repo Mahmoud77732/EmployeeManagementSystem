@@ -55,6 +55,15 @@ public class EmployeeRepoImpl extends GenericRepoImpl<Employee, Long> implements
         }
     }
 
+    @Override
+    public Employee getEmployeeByUsername(String username) {
+        String jpqlQuery = "SELECT e FROM Employee e WHERE e.name = :username";
+        try(Session session = st_getSession()){
+            return session.createQuery(jpqlQuery, Employee.class)
+                    .setParameter("username", username).uniqueResult();
+        }
+    }
+
     /*
     public List<Employee> findAll(){
         try(Session session = st_openSession()){

@@ -8,5 +8,6 @@ import java.util.List;
 public interface DepartmentRepo extends GenericRepo<Department, Long> {
 
     List<Employee> getEmployees(Long departmentId);
+    Department findDepartmentByName(String departmentName);
 
 }

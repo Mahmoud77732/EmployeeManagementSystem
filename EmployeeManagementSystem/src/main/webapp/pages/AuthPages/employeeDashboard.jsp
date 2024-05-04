@@ -10,6 +10,9 @@
     </h1>
     <br/>
     <a href="employees">Employee_List</a>
-
+    <br>
+    <a href="empProfile">My Profile</a>
+    <br>
+    <p>Role: ${role}</p>
 </body>
 </html>

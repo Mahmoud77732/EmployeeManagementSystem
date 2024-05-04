@@ -4,8 +4,11 @@ package com.oneteam.empsystem.repo.reposimpl;
 import com.oneteam.empsystem.entity.Department;
 import com.oneteam.empsystem.entity.Employee;
 import com.oneteam.empsystem.repo.repos.DepartmentRepo;
+import org.hibernate.Session;
 
 import java.util.List;
+
+import static com.oneteam.empsystem.db.HibernateConnectionmanager.st_getSession;
 
 public class DepartmentRepoImpl extends GenericRepoImpl<Department, Long> implements DepartmentRepo {
 
@@ -34,6 +37,14 @@ public class DepartmentRepoImpl extends GenericRepoImpl<Department, Long> implem
     @Override
     public List<Employee> getEmployees(Long departmentId) {
         return findById(departmentId).getEmployees();
+    }
+
+    @Override
+    public Department findDepartmentByName(String departmentName) {
+        String query = "select d from Department d where d.name = :name";
+        try(Session session = st_getSession()){
+            return session.createQuery(query, Department.class).setParameter("name", departmentName).uniqueResult();
+        }
     }
 
 }

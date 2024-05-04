@@ -14,7 +14,7 @@
     <a href="departments">Department_List</a>
     <br><br>
     <a href="projects">Project_List</a>
-
-    <%-- <p>userPageRole: ${userPageRole}</p>--%>
+    <br><br>
+     <p>Role: ${role}</p>
 </body>
 </html>

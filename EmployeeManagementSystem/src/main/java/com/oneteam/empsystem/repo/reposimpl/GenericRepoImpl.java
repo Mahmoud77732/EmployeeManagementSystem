@@ -1,6 +1,8 @@
 package com.oneteam.empsystem.repo.reposimpl;
 import com.oneteam.empsystem.repo.repos.GenericRepo;
 import org.hibernate.Session;
+
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 

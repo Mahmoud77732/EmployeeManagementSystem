@@ -8,5 +8,6 @@ public interface EmployeeRepo extends GenericRepo<Employee, Long> {
 
     List<Employee> findByDepartmentId(Long departmentId);
     List<Employee> findByProjectId(Long projectId);
+    Employee getEmployeeByUsername(String username);
 
 }
