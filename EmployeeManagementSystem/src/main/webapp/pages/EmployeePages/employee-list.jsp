@@ -27,6 +27,8 @@
     %>
     --%>
 
+    <a href="logout">logout</a>
+
     <h2>Employees List</h2>
     <table border="2" cellpadding="10">
         <thead>
@@ -79,6 +81,5 @@
         <%-- <a href="login">start_page</a>--%>
     </c:if>
     <%-- <a href="${pageContext.request.contextPath}/pages/AuthPages/employeeDashboard.jsp">start_page</a>--%>
-    <a href="logout">logout</a>
 </body>
 </html>

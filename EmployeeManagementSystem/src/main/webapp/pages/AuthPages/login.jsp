@@ -8,8 +8,19 @@
     <title>Login</title>
 </head>
 <body>
+<%--    <%--%>
+<%--        if(session.getAttribute("role") != null){--%>
+<%--            String role = session.getAttribute("role").toString();--%>
+<%--            System.out.println("=====> " + role);--%>
+<%--            if(role.equals("HR manager")){--%>
+<%--                response.sendRedirect("login");--%>
+<%--            } else if (role.equals("Employee")) {--%>
+<%--                response.sendRedirect("login");--%>
+<%--            }--%>
+<%--        }--%>
+<%--    %>--%>
     <h2>Login</h2>
-    <form action="login" method="post">
+    <form action="login" method="get">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required placeholder="enter your username"><br><br>
         <label for="password">Password:</label>

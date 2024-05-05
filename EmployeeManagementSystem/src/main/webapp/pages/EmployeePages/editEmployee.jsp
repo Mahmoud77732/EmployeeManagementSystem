@@ -1,5 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Edit Employee</title>
@@ -14,6 +15,11 @@
         Salary: <input type="text" name="salary" value="${employee.salary}" /><br>
         <input type="submit" value="Update" />
     </form>
+
+    <c:if test="${departmentNameNotFound eq true}">
+        <p style="color: tomato">you entered wrong department name</p>
+    </c:if>
+
 </body>
 </html>
 

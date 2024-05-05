@@ -24,5 +24,7 @@
     <a href="projects">Project_List</a>
     <br><br>
      <p>Role: ${role}</p>
+    <br><br>
+    <a href="logout">logout</a>
 </body>
 </html>

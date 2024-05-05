@@ -23,5 +23,7 @@
     <a href="empProfile">My Profile</a>
     <br>
     <p>Role: ${role}</p>
+    <br><br>
+    <a href="logout">logout</a>
 </body>
 </html>

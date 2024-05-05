@@ -14,7 +14,7 @@ import static com.oneteam.empsystem.db.HibernateConnectionmanager.*;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("pages/AuthPages/" + userPageRole).forward(request, response);
         } else {
             request.setAttribute("error", "Invalid username or password");
-            request.getRequestDispatcher("pages/AuthPages/login.jsp").forward(request, response);
+            request.getRequestDispatcher("pages/AuthPages/login.jsp?error=true").forward(request, response);
             // response.sendRedirect("/login.jsp?error=true");
         }
     }

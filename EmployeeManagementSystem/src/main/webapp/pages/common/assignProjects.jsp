@@ -26,7 +26,5 @@
         <br>
         <input type="submit" value="Assign Project">
     </form>
-    <br><br>
-    <a href="${pageContext.request.contextPath}">start_page</a>
 </body>
 </html>

@@ -13,10 +13,11 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.removeAttribute("username");
+            session.removeAttribute("role");
             session.invalidate();
         }
-        // response.sendRedirect("pages/AuthPages/login.jsp");
-        request.getRequestDispatcher("pages/AuthPages/login.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath());
+        // request.getRequestDispatcher("pages/AuthPages/login.jsp").forward(request, response);
     }
 }
 

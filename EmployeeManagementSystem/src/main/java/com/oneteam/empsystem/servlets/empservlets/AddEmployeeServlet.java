@@ -21,9 +21,10 @@ public class AddEmployeeServlet extends HttpServlet {
 
     private final EmployeeRepo employeeRepo = new EmployeeRepoImpl();
     private final DepartmentRepo departmentRepo = new DepartmentRepoImpl();
+    private final UserRepo userRepo = new UserRepoImpl();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendError(405);
+         response.sendError(405);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,33 +32,53 @@ public class AddEmployeeServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
-        BigDecimal salary = new BigDecimal(request.getParameter("salary"));
+        String salaryStr = request.getParameter("salary");
+        String departmentName = request.getParameter("departmentName");
 
-        Employee newEmployee = new Employee();
-        newEmployee.setName(name);
-        newEmployee.setEmail(email);
-        newEmployee.setSalary(salary);
-        // add this employee to it's department
-        if(!request.getParameter("departmentName").trim().isEmpty()){
-            String departmentName = (request.getParameter("departmentName"));
-            Department department = departmentRepo.findDepartmentByName(departmentName);
-            department.setName(departmentName);
-            newEmployee.setDepartment(department);
-            department.getEmployees().add(newEmployee);
-            departmentRepo.update(department);
+        HttpSession session = request.getSession();
+        request.setAttribute("error", "");
+
+        if(name == null || email == null || password == null || role == null || salaryStr == null
+            || name.trim().isEmpty() || email.trim().isEmpty() || password.trim().isEmpty() || role.trim().isEmpty()
+            || departmentName.trim().isEmpty())
+        {
+            request.setAttribute("error", "All fields are required");
+            request.getRequestDispatcher("/pages/EmployeePages/addEmployee.jsp").forward(request, response);
         }
         else{
-            newEmployee.setDepartment(null);
+            try{
+                BigDecimal salary = new BigDecimal(salaryStr);
+                Employee newEmployee = new Employee(name, email, salary);
+                // add this employee to it's department
+                Department department = departmentRepo.findDepartmentByName(departmentName);
+                if(department != null){ // department found
+                    department.setName(departmentName);
+                    newEmployee.setDepartment(department);
+                    department.getEmployees().add(newEmployee);
+                    departmentRepo.update(department);
+                }
+                else{ // department not found
+                    session.setAttribute("error", "department not found");
+                    request.getRequestDispatcher("/pages/EmployeePages/addEmployee.jsp").forward(request, response);
+                }
+                saveUser(newEmployee.getName(), password, role); // save user info
+                employeeRepo.save(newEmployee);
+                response.sendRedirect(request.getContextPath() + "/employees"); // Redirect to employee list page
+            }
+            catch(Exception ex){
+                System.err.println(ex.getMessage());
+                request.setAttribute("error", ex.getMessage());
+                request.getRequestDispatcher("/pages/EmployeePages/addEmployee.jsp").forward(request, response);
+            }
         }
+    }
 
-        UserRepo userRepo = new UserRepoImpl();
+
+    protected void saveUser(String username, String password, String role){
         User user = new User();
-        user.setUsername(newEmployee.getName());
+        user.setUsername(username);
         user.setPassword(password); // by default
         user.setRole(role);
         userRepo.save(user);
-
-        employeeRepo.save(newEmployee);
-        response.sendRedirect(request.getContextPath() + "/employees"); // Redirect to employee list page
     }
 }

@@ -1,6 +1,10 @@
 package com.oneteam.empsystem.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,9 +18,11 @@ public class Employee {
     @Column(name = "employee_id")
     private Long id;
 
+    @NotBlank
     @Column(name = "name")
     private String name;
 
+    @Email
     @Column(name = "email")
     private String email;
 
@@ -24,6 +30,8 @@ public class Employee {
     @JoinColumn(name = "department_id")
     private Department department;
 
+    @NotNull
+    @DecimalMin(value = "0.0")
     @Column(name = "salary")
     private BigDecimal salary;
 
