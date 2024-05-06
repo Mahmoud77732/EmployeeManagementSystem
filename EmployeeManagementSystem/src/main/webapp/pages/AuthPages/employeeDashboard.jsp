@@ -7,13 +7,12 @@
 </head>
 <body>
 
-    <%--
     <%
-        if(session.getAttribute("username") == null || !session.getAttribute("role").equals("Employee")){
-            response.sendRedirect("/login");
-        }
+        <%-- prevent back to this page after logout --%>
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Expires", "0");
     %>
-    --%>
 
     <h1><%= "Employee Management System!" %>
     </h1>

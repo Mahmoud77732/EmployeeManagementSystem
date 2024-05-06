@@ -20,7 +20,7 @@
 <%--        }--%>
 <%--    %>--%>
     <h2>Login</h2>
-    <form action="login" method="get">
+    <form action="login" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required placeholder="enter your username"><br><br>
         <label for="password">Password:</label>

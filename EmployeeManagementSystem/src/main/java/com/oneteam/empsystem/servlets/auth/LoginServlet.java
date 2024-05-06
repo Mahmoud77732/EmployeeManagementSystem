@@ -14,7 +14,7 @@ import static com.oneteam.empsystem.db.HibernateConnectionmanager.*;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
