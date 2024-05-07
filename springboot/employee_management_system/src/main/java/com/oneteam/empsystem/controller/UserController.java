@@ -1,5 +1,6 @@
 package com.oneteam.empsystem.controller;
 
+import com.oneteam.empsystem.entity.dto.UserEntityDTO;
 import com.oneteam.empsystem.entity.pojo.UserEntity;
 import com.oneteam.empsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,31 +18,32 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserEntity>> getAllUsers() {
-        List<UserEntity> users = userService.getAllUsers();
+    public ResponseEntity<List<UserEntityDTO>> getAllUsers() {
+        List<UserEntityDTO> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserEntity> getUserById(@PathVariable Long id) {
-        return userService.getUserById(id)
-                .map(user -> new ResponseEntity<>(user, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<UserEntityDTO> getUserById(@PathVariable Long id) {
+        UserEntityDTO user = userService.getUserById(id);
+        return user != null ?
+                new ResponseEntity<>(user, HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping
-    public ResponseEntity<UserEntity> createUser(@RequestBody UserEntity user) {
-        UserEntity savedUser = userService.saveUser(user);
+    public ResponseEntity<UserEntityDTO> createUser(@RequestBody UserEntity user) {
+        UserEntityDTO savedUser = userService.saveUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserEntity> updateUser(@PathVariable Long id, @RequestBody UserEntity user) {
-        if (!userService.getUserById(id).isPresent()) {
+    public ResponseEntity<UserEntityDTO> updateUser(@PathVariable Long id, @RequestBody UserEntity user) {
+        if (userService.getUserById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         user.setId(id);
-        UserEntity updatedUser = userService.saveUser(user);
+        UserEntityDTO updatedUser = userService.saveUser(user);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
