@@ -1,6 +1,6 @@
 package com.oneteam.empsystem.controller;
 
-import com.oneteam.empsystem.entity.Department;
+import com.oneteam.empsystem.entity.pojo.Department;
 import com.oneteam.empsystem.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

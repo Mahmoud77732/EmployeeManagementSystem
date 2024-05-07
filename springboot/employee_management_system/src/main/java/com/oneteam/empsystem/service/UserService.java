@@ -1,6 +1,6 @@
 package com.oneteam.empsystem.service;
 
-import com.oneteam.empsystem.entity.UserEntity;
+import com.oneteam.empsystem.entity.pojo.UserEntity;
 import com.oneteam.empsystem.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

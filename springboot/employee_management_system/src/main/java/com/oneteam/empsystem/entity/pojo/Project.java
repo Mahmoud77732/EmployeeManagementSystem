@@ -1,4 +1,4 @@
-package com.oneteam.empsystem.entity;
+package com.oneteam.empsystem.entity.pojo;
 
 import jakarta.persistence.*;
 import lombok.*;

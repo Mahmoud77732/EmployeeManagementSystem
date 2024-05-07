@@ -1,14 +1,13 @@
 package com.oneteam.empsystem.service;
 
-import com.oneteam.empsystem.entity.Employee;
-import com.oneteam.empsystem.entity.Project;
+import com.oneteam.empsystem.entity.pojo.Employee;
+import com.oneteam.empsystem.entity.pojo.Project;
 import com.oneteam.empsystem.repo.EmployeeRepo;
 import com.oneteam.empsystem.repo.ProjectRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;

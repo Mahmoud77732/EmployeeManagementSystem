@@ -1,4 +1,4 @@
-package com.oneteam.empsystem.entity;
+package com.oneteam.empsystem.entity.pojo;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,7 +22,7 @@ public class Department {
 
     private String description;
 
-    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
     private List<Employee> employees =  new ArrayList<>();
 
 }

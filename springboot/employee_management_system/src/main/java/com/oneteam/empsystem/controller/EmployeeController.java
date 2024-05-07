@@ -1,6 +1,6 @@
 package com.oneteam.empsystem.controller;
 
-import com.oneteam.empsystem.entity.Employee;
+import com.oneteam.empsystem.entity.pojo.Employee;
 import com.oneteam.empsystem.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
