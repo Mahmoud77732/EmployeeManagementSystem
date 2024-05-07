@@ -1,22 +1,22 @@
 package com.oneteam.empsystem.entity.dto;
 
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Set;
 
-@Setter
-@Getter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-public class EmployeeDTO {
 
-    private Long id;
-    private String name;
-    private BigDecimal salary;
-    private String email;
-    private DepartmentDTO department;
-    private Set<ProjectDTO> projects;
+public record EmployeeDTO (
+    Long id,
+    String name,
+    BigDecimal salary,
+    String email,
+    DepartmentDTO department,
+    Set<ProjectDTO> projects
+){
 
 }

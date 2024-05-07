@@ -1,17 +1,9 @@
 package com.oneteam.empsystem.entity.dto;
 
-import lombok.*;
+public record UserEntityDTO (
+    Long id,
+    String username,
+    String password,
+    String role
 
-@Setter
-@Getter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserEntityDTO {
-
-    private Long id;
-    private String username;
-    private String password;
-    private String role;
-
-}
+){}

@@ -1,5 +1,6 @@
 package com.oneteam.empsystem.controller;
 
+import com.oneteam.empsystem.entity.dto.EmployeeDTO;
 import com.oneteam.empsystem.entity.pojo.Employee;
 import com.oneteam.empsystem.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,31 +19,32 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping
-    public ResponseEntity<List<Employee>> getAllEmployees() {
-        List<Employee> employees = employeeService.getAllEmployees();
+    public ResponseEntity<List<EmployeeDTO>> getAllEmployees() {
+        List<EmployeeDTO> employees = employeeService.getAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        return employeeService.getEmployeeById(id)
-                .map(employee -> new ResponseEntity<>(employee, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable Long id) {
+        EmployeeDTO employeeDTO = employeeService.getEmployeeById(id);
+        return employeeDTO != null ?
+                new ResponseEntity<>(employeeDTO, HttpStatus.OK) :
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
-        Employee savedEmployee = employeeService.saveEmployee(employee);
+    public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody Employee employee) {
+        EmployeeDTO savedEmployee = employeeService.saveEmployee(employee);
         return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-        if (!employeeService.getEmployeeById(id).isPresent()) {
+    public ResponseEntity<EmployeeDTO> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+        if (employeeService.getEmployeeById(id) != null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         employee.setId(id);
-        Employee updatedEmployee = employeeService.saveEmployee(employee);
+        EmployeeDTO updatedEmployee = employeeService.saveEmployee(employee);
         return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
     }
 
@@ -54,7 +56,7 @@ public class EmployeeController {
 
     // Assign project to employee// Assign project to employee
     @PostMapping("/assign-project/{empId}")
-    public Employee assignProject(@PathVariable Long empId, @RequestParam("projectId") Long projectId) throws NotFoundException {
+    public EmployeeDTO assignProject(@PathVariable Long empId, @RequestParam("projectId") Long projectId) throws NotFoundException {
         return employeeService.assignProject(empId, projectId);
     }
 

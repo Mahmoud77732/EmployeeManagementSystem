@@ -1,16 +1,11 @@
 package com.oneteam.empsystem.entity.dto;
 
-import lombok.*;
+import lombok.NoArgsConstructor;
 
-@Setter
-@Getter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-public class DepartmentDTO {
-
-    private Long id;
-    private String name;
-    private String description;
+public record DepartmentDTO (
+    Long id,
+    String name,
+    String description
+){
 
 }
