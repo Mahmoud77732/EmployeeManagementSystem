@@ -3,6 +3,7 @@ package com.oneteam.empsystem.controller;
 import com.oneteam.empsystem.entity.Employee;
 import com.oneteam.empsystem.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,4 +51,12 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    // Assign project to employee// Assign project to employee
+    @PostMapping("/assign-project/{empId}")
+    public Employee assignProject(@PathVariable Long empId, @RequestParam("projectId") Long projectId) throws NotFoundException {
+        return employeeService.assignProject(empId, projectId);
+    }
+
+
 }

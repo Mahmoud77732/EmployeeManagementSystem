@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
-@Builder
-@Getter
 @Setter
+@Getter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Department {
@@ -23,7 +22,7 @@ public class Department {
 
     private String description;
 
-    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     private List<Employee> employees =  new ArrayList<>();
 
 }

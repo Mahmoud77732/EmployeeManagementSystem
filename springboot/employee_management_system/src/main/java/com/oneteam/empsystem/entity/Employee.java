@@ -10,10 +10,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
-@Builder
-@Getter
 @Setter
+@Getter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
