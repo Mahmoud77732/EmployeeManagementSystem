@@ -40,7 +40,7 @@ public class EmployeeController {
 
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeDTO> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-        if (employeeService.getEmployeeById(id) != null) {
+        if (employeeService.getEmployeeById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         employee.setId(id);
