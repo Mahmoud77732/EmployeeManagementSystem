@@ -1,11 +1,12 @@
 package com.oneteam.empsystem.entity.pojo;
 
 import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.*;
 
 @Entity
+@Table(name = "users")
 @Getter
 @Setter
 @ToString
@@ -14,26 +15,27 @@ import lombok.*;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="user_id")
-    private Long id;
-
+    @Column(name="username", length = 50)
     private String username;
 
+    @Column(name = "password", length = 50)
     private String password;
     
-    private int enabled;
+    @Column(name = "enabled")
+    private boolean enabled;
 
     // private String role;
     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Authority> authorities = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Authority> authorities = new HashSet<>();
 
-    public UserEntity(String username, String password, int enabled) {
+    public UserEntity(String username, String password, boolean enabled) {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
     }
+
+    
     
     
 

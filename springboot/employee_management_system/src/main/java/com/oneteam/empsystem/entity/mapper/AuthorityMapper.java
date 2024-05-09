@@ -20,7 +20,7 @@ public class AuthorityMapper implements Function<Authority, AuthorityDTO> {
     public AuthorityDTO apply(Authority authority) {
         AuthorityDTO authorityDTO = new AuthorityDTO(
                 authority.getId(),
-                authority.getName()
+                authority.getAuthority()
         );
         return authorityDTO;
     }

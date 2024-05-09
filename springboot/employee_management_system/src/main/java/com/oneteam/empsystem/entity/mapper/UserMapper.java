@@ -14,16 +14,16 @@ public class UserMapper implements Function<UserEntity, UserEntityDTO> {
     @Override
     public UserEntityDTO apply(UserEntity userEntity) {
         UserEntityDTO userEntityDTO = new UserEntityDTO(
-                userEntity.getId(),
                 userEntity.getUsername(),
                 userEntity.getPassword(),
+                userEntity.isEnabled(),
                 userEntity.getAuthorities().stream()
                     .map(authority -> {
                         return new AuthorityDTO(
                                 authority.getId(),
-                                authority.getName()
+                                authority.getAuthority()
                         );
-                    }).collect(Collectors.toList()));
+                    }).collect(Collectors.toSet()));
         return userEntityDTO;
     }
 

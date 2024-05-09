@@ -1,11 +1,11 @@
 package com.oneteam.empsystem.entity.dto;
 
-import java.util.List;
+import java.util.Set;
 
 public record UserEntityDTO (
-    Long id,
     String username,
     String password,
-    List<AuthorityDTO> authorities
+    boolean enabled,
+    Set<AuthorityDTO> authorities
 
 ){}

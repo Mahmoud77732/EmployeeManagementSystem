@@ -10,5 +10,5 @@ package com.oneteam.empsystem.entity.dto;
  */
 public record AuthorityDTO (
     Long id,
-    String name
+    String authority
 ){}
