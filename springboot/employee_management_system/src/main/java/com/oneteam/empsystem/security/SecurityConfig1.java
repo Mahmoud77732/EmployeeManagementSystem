@@ -49,7 +49,7 @@ public class SecurityConfig1 {
                         .requestMatchers(HttpMethod.GET, "/api/employees").hasRole("Employee")
                         .requestMatchers(HttpMethod.GET, "/api/employees/**").hasRole("Employee")
                         .requestMatchers(HttpMethod.POST, "/api/employees").hasRole("Manager")
-                        .requestMatchers(HttpMethod.PUT, "/api/employees").hasRole("Manager")
+                        .requestMatchers(HttpMethod.PUT, "/api/employees/**").hasRole("Manager")
                         .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("Admin")
         );
         http.httpBasic(data -> userDetailsManager());
