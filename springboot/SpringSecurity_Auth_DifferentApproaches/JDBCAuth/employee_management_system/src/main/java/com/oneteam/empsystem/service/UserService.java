@@ -24,14 +24,17 @@ public class UserService implements ApplicationRunner {
     @Autowired
     private UserMapper userMapper;
 
-    // initialize _ insertion auth data
+    // ==> initialize _ insertion auth data
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        // spring security uses "ROLE_" as a prefix for roles
-        // "{noop}" tells spring security that the password will be a plain text
-        // Create sample users and authorities
-        UserEntity user1 = new UserEntity("ali", "{noop}12345", true);
-        UserEntity user2 = new UserEntity("osama", "{noop}12345", true);
+        // ==> spring security uses "ROLE_" as a prefix for roles
+        // ==> plain-text-pass: "{noop}" tells spring security that the password will be a plain text
+        // ==> Bcrypt-pass: to Generate BCrypt Passwords:- https://www.bcryptcalculator.com/
+        // ==> Bcrypt-pass: passowrd must be >= 68 char-length "({bcrypt} = 8 char) + (encodedPassword = 60 chars)"
+        // ==> Create sample users and authorities
+        // UserEntity user1 = new UserEntity("ali", "{noop}12345", true);
+        UserEntity user1 = new UserEntity("ali", "{bcrypt}$2a$10$cNzlM1MDnHRlA36iOo/88e035sbb.bQP4JWGKZ44GaAR9ahJx7CH.", true);
+        UserEntity user2 = new UserEntity("osama", "{bcrypt}$2a$10$cNzlM1MDnHRlA36iOo/88e035sbb.bQP4JWGKZ44GaAR9ahJx7CH.", true);
         Authority authority1 = new Authority("ROLE_EMPLOYEE", user1);
         Authority authority2 = new Authority("ROLE_EMPLOYEE", user2);
         Authority authority3 = new Authority("ROLE_MANAGER", user2);
@@ -39,7 +42,7 @@ public class UserService implements ApplicationRunner {
         user2.getAuthorities().add(authority2);
         user2.getAuthorities().add(authority3);
         
-        // Save users and authorities to the database
+        // ==> Save users and authorities to the database
         if(getUserByUsername(user1.getUsername()) == null)
         {
             userRepo.save(user1);    
@@ -49,7 +52,7 @@ public class UserService implements ApplicationRunner {
         }
     }
 
-    //TODO using DTO
+    //==> using DTO
     public List<UserEntityDTO> getAllUsers() {
         List<UserEntity> users = userRepo.findAll();
         return users.stream()

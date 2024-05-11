@@ -6,7 +6,7 @@ import java.util.Set;
 import lombok.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users") // ==> users: is the default name s_security deal with, if you changet it, u must provide queries in Config_class to tell spring how to fetch the data
 @Getter
 @Setter
 @ToString
@@ -18,7 +18,7 @@ public class UserEntity {
     @Column(name="username", length = 50)
     private String username;
 
-    @Column(name = "password", length = 50)
+    @Column(name = "password", length = 70) // ==> long for Bcrypted passwords
     private String password;
     
     @Column(name = "enabled")

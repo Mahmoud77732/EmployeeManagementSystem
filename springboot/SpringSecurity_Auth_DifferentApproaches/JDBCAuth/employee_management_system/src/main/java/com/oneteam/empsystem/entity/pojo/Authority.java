@@ -6,7 +6,6 @@ package com.oneteam.empsystem.entity.pojo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,7 +23,7 @@ import lombok.ToString;
  * @author mahmoud
  */
 @Entity
-@Table(name = "authorities")
+@Table(name = "authorities") // ==> authorities: is the default name s_security deal with, if you changet it, u must provide queries in Config_class to tell spring how to fetch the data
 @Getter
 @Setter
 @ToString

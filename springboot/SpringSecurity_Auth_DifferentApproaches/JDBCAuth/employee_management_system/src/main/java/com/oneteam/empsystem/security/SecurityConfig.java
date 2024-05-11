@@ -4,6 +4,7 @@
  */
 package com.oneteam.empsystem.security;
 
+import javax.crypto.AEADBadTagException;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,12 +22,25 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
     
+    /*
+        * to Generate BCrypt Passwords
+        https://www.bcryptcalculator.com/
+    */
+    
     @Autowired
     private DataSource dataSource;
     
     
     @Bean
     public UserDetailsManager userDetailsManager(){
+        // ==> Spring Security deal with {"authorities", "users"} tables names as a default
+        // ==> if u changed those names, u must provide custom queries to handle that
+        // ==> code with custom tables names such as {"members", "roles"}
+        // JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+        // jdbcUserDetailsManager.setUsersByUsernameQuery("select user_id, pword, active from members where user_id=?");
+        // jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select user_id, role from roles where user_id=?");
+        
+        // ==> code with default tables names {"users", "authorities"}
         return new JdbcUserDetailsManager(dataSource); // tell s_security to use DBC auth with our data source
     }
     
@@ -50,7 +64,13 @@ public class SecurityConfig {
 }
 
 
+///////////////////////////////////////////////////////////
 /*
+// (1) --> in-memory auth
+
+@Configuration
+public class SecurityConfig {
+    
     // in memory auth
     @Bean
     public InMemoryUserDetailsManager userDetailsManager(){
@@ -72,4 +92,24 @@ public class SecurityConfig {
                 .build();
         return new InMemoryUserDetailsManager(ali, osama, mostafa);
     }
- */
+    
+    
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+         // spring security uses "ROLE_" as a prefix for roles
+        return http.authorizeHttpRequests(configurer
+                -> configurer
+                        .requestMatchers(HttpMethod.GET, "/api/employees").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "/api/employees/**").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.POST, "/api/employees").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.PUT, "/api/employees/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("MANAGER")
+                        .anyRequest().authenticated())
+                .httpBasic(data -> userDetailsManager())
+                .csrf(csrf -> csrf.disable())
+                .build();
+    }
+
+}
+*/
+///////////////////////////////////////////////////////////
