@@ -31,6 +31,7 @@ public class SecurityConfig {
     private DataSource dataSource;
     
     
+    // JDBC auth: with different tables-names/db-schema --> custom queries 
     @Bean
     public UserDetailsManager userDetailsManager() throws Exception{
         // ==> Spring Security deal with {"authorities", "users"} tables names as a default
